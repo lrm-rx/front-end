@@ -9,28 +9,30 @@
 ```js
 // 加载图片
 function loadImg(src) {
-    const p = new Promise(
-        (resolve, reject) => {
-            const img = document.createElement('img')
-            img.onload = () => {
-                resolve(img)
-            }
-            img.onerror = () => {
-                const err = new Error(`图片加载失败 ${src}`)
-                reject(err)
-            }
-            img.src = src
-        }
-    )
-    return p
+  const p = new Promise((resolve, reject) => {
+    const img = document.createElement("img");
+    img.onload = () => {
+      resolve(img);
+    };
+    img.onerror = () => {
+      const err = new Error(`图片加载失败 ${src}`);
+      reject(err);
+    };
+    img.src = src;
+  });
+  return p;
 }
-const url = 'https://img.mukewang.com/5a9fc8070001a82402060220-140-140.jpg'
-loadImg(url).then(img => {
-    console.log(img.width)
-    return img
-}).then(img => {
-    console.log(img.height)
-}).catch(ex => console.error(ex))
+const url =
+  "https://img1.baidu.com/it/u=2130153305,2568708992&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500";
+loadImg(url)
+  .then((img) => {
+    console.log(img.width);
+    return img;
+  })
+  .then((img) => {
+    console.log(img.height);
+  })
+  .catch((ex) => console.error(ex));
 ```
 
 ## 三种状态
@@ -41,31 +43,28 @@ loadImg(url).then(img => {
 
 ```js
 // 刚定义时，状态默认为 pending
-const p1 = new Promise((resolve, reject) => {
-
-})
+const p1 = new Promise((resolve, reject) => {});
 
 // 执行 resolve() 后，状态变成 resolved
 const p2 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve()
-    })
-})
+  setTimeout(() => {
+    resolve();
+  });
+});
 
 // 执行 reject() 后，状态变成 rejected
 const p3 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        reject()
-    })
-})
-
+  setTimeout(() => {
+    reject();
+  });
+});
 ```
 
 ```js
 // 直接返回一个 resolved 状态
-Promise.resolve(100)
+Promise.resolve(100);
 // 直接返回一个 rejected 状态
-Promise.reject('some error')
+Promise.reject("some error");
 ```
 
 ## 状态和 then catch
@@ -76,62 +75,75 @@ Promise.reject('some error')
 - 状态变为 resolved 会触发后续的 then 回调
 - 状态变为 rejected 会触发后续的 catch 回调
 
------
+---
 
 then catch 会继续返回 Promise ，**此时可能会发生状态变化！！！**
 
 ```js
 // then() 一般正常返回 resolved 状态的 promise
 Promise.resolve().then(() => {
-    return 100
-})
+  return 100;
+});
 
 // then() 里抛出错误，会返回 rejected 状态的 promise
 Promise.resolve().then(() => {
-    throw new Error('err')
-})
+  throw new Error("err");
+});
 
 // catch() 不抛出错误，会返回 resolved 状态的 promise
 Promise.reject().catch(() => {
-    console.error('catch some error')
-})
+  console.error("catch some error");
+});
 
 // catch() 抛出错误，会返回 rejected 状态的 promise
 Promise.reject().catch(() => {
-    console.error('catch some error')
-    throw new Error('err')
-})
+  console.error("catch some error");
+  throw new Error("err");
+});
 ```
 
 看一个综合的例子，即那几个面试题
 
 ```js
 // 第一题
-Promise.resolve().then(() => {
-    console.log(1)
-}).catch(() => {
-    console.log(2)
-}).then(() => {
-    console.log(3)
-})
+Promise.resolve()
+  .then(() => {
+    console.log(1);
+  })
+  .catch(() => {
+    console.log(2);
+  })
+  .then(() => {
+    console.log(3);
+  });
 
 // 第二题
-Promise.resolve().then(() => { // 返回 rejected 状态的 promise
-    console.log(1)
-    throw new Error('erro1')
-}).catch(() => { // 返回 resolved 状态的 promise
-    console.log(2)
-}).then(() => {
-    console.log(3)
-})
+Promise.resolve()
+  .then(() => {
+    // 返回 rejected 状态的 promise
+    console.log(1);
+    throw new Error("erro1");
+  })
+  .catch(() => {
+    // 返回 resolved 状态的 promise
+    console.log(2);
+  })
+  .then(() => {
+    console.log(3);
+  });
 
 // 第三题
-Promise.resolve().then(() => { // 返回 rejected 状态的 promise
-    console.log(1)
-    throw new Error('erro1')
-}).catch(() => { // 返回 resolved 状态的 promise
-    console.log(2)
-}).catch(() => {
-    console.log(3)
-})
+Promise.resolve()
+  .then(() => {
+    // 返回 rejected 状态的 promise
+    console.log(1);
+    throw new Error("erro1");
+  })
+  .catch(() => {
+    // 返回 resolved 状态的 promise
+    console.log(2);
+  })
+  .catch(() => {
+    console.log(3);
+  });
 ```

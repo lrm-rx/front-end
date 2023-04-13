@@ -31,7 +31,7 @@ function loadImg(src) {
 }
 
 async function loadImg1() {
-    const src1 = 'http://www.imooc.com/static/img/index/logo_new.png'
+    const src1 = 'https://img1.baidu.com/it/u=2130153305,2568708992&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500'
     const img1 = await loadImg(src1)
     return img1
 }
