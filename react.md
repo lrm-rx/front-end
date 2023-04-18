@@ -298,3 +298,64 @@
 - 函数更灵活,更易拆分, 更易测试
 - 但函数组件太简单,需要增强能力 ---- hooks
 
+### useEffect中返回函数fn
+
+- useEffect依赖[], 组件销毁是执行fn, 等于WillUnMount
+- useEffect无依赖或依赖[a, b], 组件更新时执行fn
+- 即下一次执行useEffect之前,就会执行fn, 无论更新或卸载
+
+### useReducer和redux的区别
+
+- useReducer是useState的代替方案,用于state复杂变化
+- useReducer是单个组件状态管理,组件通讯还需要props
+- redux是全局的状态管理,多组件共享数据
+
+### useMemo使用总结
+
+> 使用 useMemo缓存数据
+
+- React默认会更新所有子组件
+- class组件使用SCU和PureComponent做优化
+- Hooks中使用useMemo, 但优化的原理是相同的
+
+### useCallback使用总结
+
+> 使用useCallback缓存函数
+
+- useMemo缓存数据
+- useCallback缓存函数
+- 两者是React Hooks的常见优化策略
+
+### 总结
+
+- useRef
+- useContext
+- useReducer
+- useMemo
+- useCallback
+
+### 自定义Hook
+
+- 封装通用的功能
+- 开发和使用第三方hooks
+- 自定义Hook带来了无限的扩展性,解耦代码 
+
+  ### Hooks的使用规范
+
+- 命名规范useXxx
+- 关于Hooks的调用顺序
+- 只能用于React函数组件和自定义Hook中,其他地方不可以
+- 只能用于顶层代码, 不能在循环/判断中使用hooks
+- eslint插件eslint-plugin-react-hooks可以帮到
+
+### Hooks的调用顺序
+
+- 无论是render还是re-render, hooks调用顺序必须一致
+- 如果hooks出现在循环/判断里,则无法保证顺序一致
+- hooks严重依赖于调用顺序
+
+### React Hooks注意事项
+
+- useState初始化值,只有第一次有效
+- 第二个参数为空数组时, useEffect内部不能修改state
+- 第二个参数存在引用类型数据时, useEffect可能出现死循环
