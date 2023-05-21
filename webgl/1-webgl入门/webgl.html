@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="400" height="400"> 此浏览器不支持canvas </canvas>
+  </body>
+</html>
+<script>
+  const ctx = document.getElementById("canvas");
+  const gl = ctx.getContext("webgl");
+  // gl.clearColor(r,g,b,a); r, g, b, a取值范围: 0.0~1.0
+  gl.clearColor(1.0, 0.0, 0.0, 1.0);
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  /* 
+  gl.COLOR_BUFFER_BIT -- 清空颜色缓存
+  gl.DEPTH_BUFFER_BIT -- 清空深度缓冲区
+  gl.STENCIL_BUFFER_BIT -- 清空模板缓冲区
+
+  gl.clear需要和gl.clearColor提到的函数搭配使用
+  */
+</script>
