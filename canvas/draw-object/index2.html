@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas绘图-画板</title>
+    <style>
+        .container {
+            width: 800px;
+            height: 200px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas id="canvas" width="800" height="200"></canvas>
+    </div>
+</body>
+</html>
+<script>
+    // 获取画布元素
+    const canvas = document.getElementById('canvas');
+    // 获得2维绘图对象
+    const ctx = canvas.getContext('2d');
+    // 设置线宽
+    ctx.lineWidth = 3;
+    // 颜色
+    ctx.strokeStyle = 'black'; // 线条
+    let flag = false;
+    canvas.onmousedown = function(e) {
+        flag = true;
+        ctx.beginPath();
+    }
+    canvas.onmousemove = function(e) {
+        if(!flag) return;
+        ctx.lineTo(e.clientX, e.clientY); // 下一点
+        ctx.stroke(); // fill() 执行填充色 stroke() 执行线条
+    }
+
+    canvas.onmouseup = function(e) {
+        flag = false;
+    }
+
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas绘图</title>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+</body>
+</html>
+<script>
+    // 获取画布元素
+    const canvas = document.getElementById('canvas');
+    // 获得2维绘图对象
+    const ctx = canvas.getContext('2d');
+    // 设置线宽
+    ctx.lineWidth = 3;
+    // 颜色
+    ctx.strokeStyle = 'red'; // 线条
+    ctx.fillStyle = 'blue'; // 填充色
+    // ctx.rect(20, 20, 300, 100); // ctx.rect(x, y, w, h)
+    // ctx.stroke(); // 线条
+    // ctx.fill(); // 填充
+    // ctx.fillRect(20, 20, 300, 100); // 直接绘制实心矩形
+    // ctx.strokeRect(20, 20, 300, 100); // 直接绘制空心矩形
+
+    // 清除矩形区域
+    ctx.clearRect(30, 30, 50, 50); // 搂空
+
+    // 圆 ctx.arc(x, y, 半径, 起始角度)
+    ctx.arc(300,300,100,0,Math.PI*2);
+    ctx.stroke();
+
+    // 填充渐变色
+    // const grd = ctx.createLinearGradient(x0,y0,x1,y1); //(开始点的x轴,开始点的y轴,结束点的x轴，结束点的y轴)
+    const grd = ctx.createLinearGradient(0,0,0,200);
+    grd.addColorStop(0, 'red');
+    grd.addColorStop(0.5, 'white');
+    grd.addColorStop(1, 'blue');
+    ctx.fillStyle = grd;
+    ctx.fillRect(10,10,200,200);
+
+    // 文字
+    ctx.font = "50px '微软雅黑'"; // 文字样式
+    ctx.shadowColor = 'black'; // 阴影颜色
+    ctx.shadowOffsetX = 5;
+    ctx.shadowOffsetY = 5;
+    ctx.shadowBlur = 10; // 阴影模糊
+    ctx.fillText('heloo world', 300, 50); //ctx.fillText(text,x,y,maxWith)   实心字
+    ctx.strokeText('小明',300,150)//ctx.fillText(text,x,y,maxWith)   空心字
+
+</script>

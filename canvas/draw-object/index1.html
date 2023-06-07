@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas绘图</title>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+</body>
+</html>
+<script>
+    // 获取画布元素
+    const canvas = document.getElementById('canvas');
+    // 获得2维绘图对象
+    const ctx = canvas.getContext('2d');
+    // 颜色
+    ctx.strokeStyle = 'red'; // 线条
+    ctx.fillStyle = 'blue'; // 填充色
+    ctx.moveTo(20, 20); // 起点
+    ctx.lineTo(100, 10); // 下一点
+    ctx.lineTo(120, 50); // 下一点
+    ctx.lineTo(130, 90); // 下一点
+    ctx.stroke(); // 执行线条
+    ctx.fill(); // 执行填充色
+
+    // 重新绘制
+    ctx.beginPath();
+    ctx.moveTo(500, 10);
+    ctx.lineTo(500, 30);
+    ctx.lineTo(400, 30);
+    ctx.closePath();
+    ctx.stroke();
+
+</script>
