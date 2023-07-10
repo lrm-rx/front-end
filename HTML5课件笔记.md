@@ -146,7 +146,21 @@ HTML5提供了新的元素来创建更好的页面结构：
 
 `data、dfn、kbd、mark、q、rb、rp、rt、rtc、ruby、samp、u、var、wbr`
 
+#### 媒体元素
 
+`audio、img、video、map、track、area`
+
+#### 内嵌元素
+
+`embed、iframe、object、param、picture、source`
+
+#### 脚本元素
+
+`canvas、script、noscript`
+
+#### 编辑标识元素
+
+`del、ins`
 
 
 
