@@ -79,7 +79,7 @@ for (let i = 0; i < 10 * 10000; i++) {
 }
 console.timeEnd("queue with list");
 
-const q2 = [];
+const q2: number[] = [];
 console.time("queue with array");
 for (let i = 0; i < 10 * 10000; i++) {
     q2.push(i); // 入队

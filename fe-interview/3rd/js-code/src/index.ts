@@ -1,7 +1,9 @@
 // import "./01-algorithm/array-rotate";
 // import "./01-algorithm/match-bracket";
 // import "./01-algorithm/reverse-link-list";
-import "./01-algorithm/queue-with-list";
+// import "./01-algorithm/queue-with-list";
+// import "./01-algorithm/binary-search";
+import "./01-algorithm/two-numbers-sum";
 
 const queue = [];
 
