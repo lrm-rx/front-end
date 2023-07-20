@@ -5,7 +5,8 @@
 // import "./01-algorithm/binary-search";
 // import "./01-algorithm/two-numbers-sum";
 // import "./01-algorithm/binary-search-tree";
-import "./01-algorithm/move-zero";
+// import "./01-algorithm/move-zero";
+import "./01-algorithm/continuous-char";
 
 const queue = [];
 
