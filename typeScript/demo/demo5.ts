@@ -120,3 +120,87 @@ const email: TypeOfMessage<Email> = "hi";
 type GetRetureType<T> = T extends (...args: never[]) => infer Reture
   ? Reture
   : never;
+
+type example2 = GetRetureType<() => string>;
+type example3 = GetRetureType<string>;
+
+// 条件类型其他使用场景
+type ToArray<T> = T extends any ? T[] : never;
+
+type stringOrNumberArray1 = ToArray<string | number>;
+type NeverType1 = ToArray<never>;
+
+// 基础映射类型
+// interface User1 {
+//   readonly name: string;
+//   readonly age: number;
+//   male?: boolean;
+// }
+
+// type FilterReadOnly<T> = {
+//   -readonly [Property in keyof T]-?: T[Property];
+// };
+
+// type PublicUser = FilterReadOnly<User>;
+// const publicUser: PublicUser = {
+//   name: "ming",
+//   age: 20,
+// };
+
+// 映射类型高级语法
+// 1. exclude
+// interface User1 {
+//   name: string;
+//   age: number;
+//   male: boolean;
+// }
+
+// type DeleteMaleProperty<T> = {
+//   [Property in keyof T as Exclude<Property, "male">]-?: T[Property];
+// };
+
+// type PublicUser = DeleteMaleProperty<User>;
+// const publicUser: PublicUser = {
+//   name: "ming",
+//   age: 20,
+// };
+
+// 2. 字面量语法例子
+interface User1 {
+  name: string;
+  age: number;
+  male: boolean;
+  sex: string;
+}
+
+// interface UserFunctions {
+//   getName: () => string;
+//   getAge: () => number;
+//   getMale: () => boolean;
+// }
+
+type GetPropertyFunctions<T> = {
+  [Property in keyof T as `get${Capitalize<
+    string & Property
+  >}`]: () => T[Property];
+};
+
+type UserFunctionsType = GetPropertyFunctions<User>;
+
+// 3. union类型使用
+type SquareEvent = {
+  kind: "square";
+  x: number;
+  y: number;
+};
+
+type CircleEvent = {
+  kind: "circle";
+  radius: number;
+};
+
+type GenerateEventsFunctions<Events extends { kind: string }> = {
+  [Event in Events as Event["kind"]]: (event: Event) => void;
+};
+
+type NewType = GenerateEventsFunctions<SquareEvent | CircleEvent>;
