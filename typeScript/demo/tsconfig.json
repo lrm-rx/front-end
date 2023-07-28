@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true, // 不声明any会报错
+    "strictNullChecks": true
+  }
+}
