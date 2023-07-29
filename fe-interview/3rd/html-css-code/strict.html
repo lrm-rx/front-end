@@ -4,11 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>index</title>
+    <title>strict mode</title>
   </head>
   <body>
-    <p>index page</p>
+    <p>strict mode</p>
 
-    <script></script>
+    <script>
+      // 'use strict'
+      const obj = { x: 10, y: 20 };
+      with (obj) {
+        console.log(x, y);
+      }
+    </script>
   </body>
 </html>
