@@ -23,12 +23,12 @@
 
       function fn2() {
         const obj = { x: 100 };
-        window.obj = obj;
+        window.obj = obj; // 不回收 有此外部引用可能不会回收
       }
       fn2();
 
       function getDataFns() {
-        const data = {}; // 闭包
+        const data = {}; // 闭包 不回收
         return {
           get(key) {
             return data[key];
