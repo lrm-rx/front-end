@@ -8,6 +8,7 @@ setTimeout(() => {
 Promise.resolve().then(() => {
   console.log("promise then");
 });
+// 推荐使用setImmediate代替process.nextTick
 process.nextTick(() => {
   console.log("nextTick");
 });
