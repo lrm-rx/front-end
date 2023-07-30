@@ -1,7 +1,7 @@
 <template>
     <p>Level3</p>
 
-    <HelloWorld msg="hello 双越" ref="hello1"/>
+    <HelloWorld msg="hello lucky" ref="hello1"/>
 </template>
 
 <script>
