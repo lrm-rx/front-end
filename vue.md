@@ -12,7 +12,15 @@
   >
   > 有重复的ref会被覆盖
 
-- 
+
+
+
+## v-for和v-if哪个的优先级更高
+
+- 在vue2中，v-for的优先级更高。
+- 在vue3中，v-if的优先级更高，且在vue3中同时使用在一个标签上时会直接报错（因为调用的变量不存在）。
+
+> 在实际开发中，两者不可同时使用在一个标签上，可以使用计算属性或者外包一层。（可以使用template标签）
 
 ## 为何v-for中要用key
 
@@ -25,6 +33,32 @@
 
 
 ## Vue组件如何通讯
+
+### 1. vue组件通信常用方式有以下8种：
+
+- props
+- $emit/~~$on~~
+- ~~$children~~/$parent
+- $attrs/~~$listeners~~
+- ref
+- $root
+- eventbus
+- vuex
+
+>注意vue3中废弃的几个API
+>
+>- https://v3-migration.vuejs.org/breaking-changes/children.html
+>- https://v3-migration.vuejs.org/breaking-changes/listeners-removed.html
+>- https://v3-migration.vuejs.org/breaking-changes/events-api.html#overview
+
+### 2. 根据组件之间关系讨论组件通信最为清晰有效
+
+- 父子组件
+  - `props`/`$emit`/`$parent`/`ref`/`$attrs`
+- 兄弟组件
+  - `$parent`/`$root`/`eventbus`/`vuex`
+- 跨层级关系
+  - `eventbus`/`vuex`/`provide`/`inject`
 
 
 
