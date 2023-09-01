@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+x0	渐变的开始圆的 x 坐标
+y0	渐变的开始圆的 y 坐标
+r0	开始圆的半径
+x1	渐变的结束圆的 x 坐标
+y1	渐变的结束圆的 y 坐标
+r1	结束圆的半径
+-->
+<canvas id="c1" width="600" height="400">
+    您的浏览器不支持 Canvas
+</canvas>
+
+<script>
+    // 1、找到画布
+    const c1 = document.getElementById('c1');
+
+    // 2、获取画笔，上下文对象
+    let ctx = c1.getContext('2d');
+
+    //声明一个径向渐变对象
+    //径向渐变xy小圆心半径径向渐变xy轴大圆心半径
+    let radialGradient = ctx.createRadialGradient(150, 150, 50, 150, 150, 150);
+    //给渐变对象添加渐变色
+    radialGradient.addColorStop(0, 'red');
+    radialGradient.addColorStop(0.2, 'orange');
+    radialGradient.addColorStop(0.4, 'tomato');
+    radialGradient.addColorStop(0.6, 'purple');
+    radialGradient.addColorStop(0.8, 'lavender');
+    radialGradient.addColorStop(1, 'rgb(204,26,248)');
+    //把渐变对象给到样式填充图形
+    ctx.fillStyle = radialGradient;
+    //绘制图形
+    ctx.fillRect(0, 0, 300, 300);
+</script>
+</body>
+</html>

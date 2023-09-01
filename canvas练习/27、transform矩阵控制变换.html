@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            border: 1px solid #cccccc;
+        }
+    </style>
+</head>
+<body>
+<canvas id="c1" width="600" height="400"></canvas>
+<script>
+    // 找到画布
+    let c1 = document.querySelector('#c1');
+    // 获取画笔，上下文对象
+    let ctx = c1.getContext('2d');
+
+    // context.transform(a,b,c,d,e,f);
+    /*    参数	描述
+        a	水平缩放 +x 水平向右延展
+        b	水平倾斜 +x 图形沿x轴顺时针从0-无穷向下旋转（0度到90度）
+        c	垂直倾斜 +y 图形沿y轴顺时针从0-无穷向上旋转（0度到90度）
+        d	垂直缩放 +y 垂直向下延展
+        e	水平移动 +x 水平向右平移
+        f	垂直移动 +y 垂直向下平移
+        */
+
+    ctx.transform(1, 0, 1, 2, 0, 0);
+    ctx.fillRect(0, 0, 50, 50);
+
+</script>
+</body>
+</html>

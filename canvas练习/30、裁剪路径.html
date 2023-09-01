@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+    id：标识元素的唯一性
+    width：画布的宽度
+    height：画布的高度
+-->
+<canvas id="c1" width="600" height="400">
+    您的浏览器不支持 Canvas
+</canvas>
+
+<script>
+    // 1、找到画布
+    const c1 = document.getElementById('c1');
+
+    // 2、获取画笔，上下文对象
+    let ctx = c1.getContext('2d');
+
+    let hearPath = new Path2D();
+
+    console.log(hearPath);
+
+    hearPath.moveTo(300, 200);
+    // 2个控制点，1个终点
+    hearPath.bezierCurveTo(350, 150, 400, 200, 300, 250);
+    hearPath.bezierCurveTo(200, 200, 250, 150, 300, 200);
+    ctx.stroke(hearPath);
+
+    let chatPath = new Path2D();
+    chatPath.moveTo(200, 300);
+    chatPath.quadraticCurveTo(150, 300, 150, 200);
+    chatPath.quadraticCurveTo(150, 100, 300, 100);
+    chatPath.quadraticCurveTo(450, 100, 450, 200);
+    chatPath.quadraticCurveTo(450, 300, 250, 300);
+    chatPath.quadraticCurveTo(250, 350, 150, 350);
+    chatPath.quadraticCurveTo(200, 350, 200, 300);
+    ctx.clip(chatPath);
+    // ctx.stroke(chatPath);
+
+    ctx.fill(hearPath);
+
+    let img = new Image();
+    img.src = "./media/dongman.jpg"
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0, 600, 400);
+        // 显示路径
+        ctx.lineWidth = 20;
+        ctx.stroke(chatPath);
+    }
+
+
+</script>
+</body>
+</html>

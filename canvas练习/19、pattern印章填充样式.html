@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="c1" width="600" height="400"></canvas>
+<script>
+    // 找到画布
+    let c1 = document.querySelector('#c1');
+    // 获取画笔，上下文对象
+    let ctx = c1.getContext('2d');
+
+    // 创建图案样式
+    let img = new Image()
+    {
+        // 创建图案对象,可以是Image对象也可以是canvas对象
+        let img = new Image();
+        img.src = "./media/ikun.jpg";
+        img.onload = function () {
+            let pattern = ctx.createPattern(img, "repeat");
+            ctx.fillStyle = pattern;
+            ctx.fillRect(0, 0, 600, 400);
+        }
+    }
+
+</script>
+</body>
+</html>

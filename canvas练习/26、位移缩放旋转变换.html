@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            border: 1px solid #cccccc;
+        }
+    </style>
+</head>
+<body>
+<canvas id="c1" width="600" height="400"></canvas>
+<script>
+    // 找到画布
+    let c1 = document.querySelector('#c1');
+    // 获取画笔，上下文对象
+    let ctx = c1.getContext('2d');
+
+    // 位移，translate，位移坐标系，水平位移和竖直位移
+    ctx.translate(300, 200);
+    ctx.rotate(Math.PI / 4);
+    ctx.scale(2, 1);
+    ctx.fillRect(0, 0, 50, 50);
+
+</script>
+</body>
+</html>

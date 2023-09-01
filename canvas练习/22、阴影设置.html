@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="c1" width="600" height="400"></canvas>
+<script>
+    // 找到画布
+    let c1 = document.querySelector('#c1');
+    // 获取画笔，上下文对象
+    let ctx = c1.getContext('2d');
+
+    ctx.shadowColor="rgba(0,0,0,0.75)";
+    ctx.shadowOffsetX=5;
+    ctx.shadowOffsetY=5;
+    ctx.shadowBlur=5;
+    ctx.strokeRect(20,20,50,50);
+    ctx.fillRect(100,20,50,50);
+</script>
+</body>
+</html>

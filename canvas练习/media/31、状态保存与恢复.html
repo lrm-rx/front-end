@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="c1" width="1000" height="800">
+    您的浏览器不支持 Canvas
+</canvas>
+
+<script>
+    // 1、找到画布
+    const c1 = document.getElementById('c1');
+
+    // 2、获取画笔，上下文对象
+    let ctx = c1.getContext('2d');
+
+    ctx.fillStyle = "red";
+    ctx.fillRect(0, 0, 100, 100);
+    ctx.save();
+
+    ctx.fillStyle = "blue";
+    ctx.fillRect(100, 100, 100, 100);
+    ctx.save();
+
+    ctx.fillStyle = "yellow";
+    ctx.fillRect(200, 200, 100, 100);
+    ctx.save();
+
+    ctx.fillStyle = "green";
+    ctx.fillRect(300, 300, 100, 100);
+    ctx.save();
+
+    ctx.restore();
+    ctx.fillRect(400, 400, 100, 100);
+
+    ctx.restore();
+    ctx.fillRect(500, 500, 100, 100);
+
+    ctx.restore();
+    ctx.fillRect(600, 600, 100, 100);
+
+    ctx.restore();
+    ctx.fillRect(700, 700, 100, 100);
+
+</script>
+</body>
+</html>

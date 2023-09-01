@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .can {
+            border: 1px solid;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<canvas class="can" width="500px" height="500px"></canvas>
+
+<script>
+    let can = document.getElementsByClassName("can")[0];
+    let ctx = can.getContext("2d");
+
+    function fun() {
+        //保存当前绘图
+        ctx.save();
+
+        //表盘
+        ctx.translate(250, 250)
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.arc(0, 0, 245, 0, Math.PI * 2)
+        ctx.stroke();
+        ctx.closePath();
+
+        //数字
+        let num = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2];
+        ctx.textAlign = 'center';
+        ctx.textBaseline = "middle";
+        ctx.font = "20px Arial";
+        for (let i = 0; i < num.length; i++) {
+            //以圆心为起始点，以开始画的落笔点展开度数
+            let rad = Math.PI * 2 / 12 * i;
+            let x = Math.cos(rad) * 215;    //余弦值
+            let y = Math.sin(rad) * 215;    //正弦值
+            ctx.fillText(num[i].toString(), x, y)     //以数组0下标开始刻画数字
+        }
+
+        //刻度
+        for (let i = 0; i < 60; i++) {    //总共60个刻度
+            //原理同上
+            let o = Math.PI * 2 / 60 * i;
+            let x = Math.cos(o) * 230;
+            let y = Math.sin(o) * 230;
+
+            ctx.beginPath();
+            //绘制时区分时刻度和分刻度，样式改变
+            if (i % 5 === 0) {
+                ctx.fillStyle = "#000";
+
+            } else {
+                ctx.fillStyle = "#ccc";
+
+            }
+            ctx.arc(x, y, 2, 0, Math.PI * 2)
+            ctx.closePath();
+            ctx.fill();
+        }
+    }
+
+    //时针
+    function drawHour(hour, minu) {
+        ctx.save();
+        ctx.beginPath();
+        let h = Math.PI * 2 / 12 * hour;
+        let m = Math.PI * 2 / 12 / 60 * minu;
+        ctx.rotate(h + m);     //旋转画布
+        ctx.lineWidth = 8;
+        ctx.lineCap = "round";   //给时针弧度
+        ctx.strokeStyle = "red";
+        //画时针
+        ctx.moveTo(0, 20)
+        ctx.lineTo(0, -110)
+        ctx.stroke();
+        ctx.closePath();
+        //出栈(全部写完归还到画布上)
+        ctx.restore();
+    }
+
+    //分针
+    function drawMinu(minu) {
+        ctx.save();
+        ctx.beginPath();
+        let o = Math.PI * 2 / 60 * minu;
+        ctx.rotate(o);   //旋转‘o’度
+        ctx.lineWidth = 5;
+        ctx.lineCap = "round";
+        ctx.strokeStyle = "green"
+        ctx.moveTo(0, 20);
+        ctx.lineTo(0, -180)
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    //秒针
+    function drawSeco(seco) {
+        ctx.save();
+        ctx.beginPath();
+        let o = Math.PI * 2 / 60 * seco;
+        ctx.rotate(o);   //旋转‘o’度
+        ctx.lineWidth = 2;
+        ctx.moveTo(0, 20);
+        ctx.lineTo(0, -220);
+        ctx.strokeStyle = "black";
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.restore();
+
+    }
+
+    //中心点
+    function drawDot() {
+        ctx.beginPath();
+        ctx.strokeStyle = "#6495ED";
+        ctx.arc(0, 0, 5, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    //获取时间
+    function draw() {
+        ctx.clearRect(0, 0, 500, 500);     //清除画布
+        let now = new Date();
+        let hour = now.getHours();
+        let minu = now.getMinutes();
+        let seco = now.getSeconds();
+        hour > 12 ? hour -= 12 : hour;
+        fun();
+        drawHour(hour, minu);
+        drawMinu(minu);
+        drawSeco(seco);
+        drawDot();
+        console.log(hour)
+        ctx.restore();
+    }
+
+    setInterval(draw, 1000);
+    draw();
+
+</script>
+</body>
+</html>

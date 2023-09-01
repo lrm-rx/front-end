@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5-Video播放视频，canvas绘制视频</title>
+</head>
+<body>
+<p>左侧为HTML5-video标签播放的视频，右侧为canvas绘制的视频</p>
+<!--muted-->
+<video id="myvideo" controls width="600" height="400" autoplay="autoplay" hidden>
+    <source src="./media/dm1.mp4" type='video/mp4'>
+</video>
+
+<canvas id="myCanvas" width="600" height="400" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<button id="btn">播放/暂停</button>
+<script>
+    let v = document.getElementById("myvideo");
+    let c = document.getElementById("myCanvas");
+    ctx = c.getContext('2d');
+    // logo图片对象
+    let img = new Image();
+    img.src = "./media/ikun.jpg"
+
+    // 第一种方式
+    // // 每 20 毫秒，代码就会绘制视频的当前帧
+    // v.addEventListener('play', function () {//播放
+    //     let i = window.setInterval(function () {
+    //         ctx.drawImage(v, 0, 0, 600, 400);
+    //         ctx.drawImage(img, 500, 300, 100, 100);
+    //     }, 20);
+    // }, false);
+    // v.addEventListener('pause', function () {//暂停
+    //     window.clearInterval(i);
+    // }, false);
+    // v.addEventListener('ended', function () {//结束
+    //     clearInterval(i);
+    // }, false);
+
+    // 第二种方式
+    // 获取按钮
+    let btn = document.getElementById("btn");
+    btn.onclick = function () {
+        v.play();
+        render();
+    }
+    function render() {
+        ctx.drawImage(v, 0, 0, 600, 400);
+        ctx.drawImage(img, 500, 300, 100, 100);
+        requestAnimationFrame(render);
+    }
+
+</script>
+</body>
+</html>
+
+ 

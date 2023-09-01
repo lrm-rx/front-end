@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="c1" width="600" height="400"></canvas>
+<script>
+    // 找到画布
+    let c1 = document.querySelector('#c1');
+    // 获取画笔，上下文对象
+    let ctx = c1.getContext('2d');
+    // 绘制图形(x,y,width，height)
+    let radiaGradient = ctx.createRadialGradient( 250, 150, 15,300, 200, 100);
+    radiaGradient.addColorStop(0, 'pink');
+    radiaGradient.addColorStop(1, 'red');
+    ctx.fillStyle = radiaGradient;
+    ctx.arc(300, 200, 100, 0, Math.PI * 2);
+    ctx.fill();
+
+</script>
+</body>
+</html>

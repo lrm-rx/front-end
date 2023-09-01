@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="c1" width="600" height="400"></canvas>
+<script>
+    // 找到画布
+    let c1 = document.querySelector('#c1');
+    // 获取画笔，上下文对象
+    let ctx = c1.getContext('2d');
+    // 文字、大小/字典
+    ctx.font = "100px Microsoft YaHei";
+    // 颜色
+    ctx.strokeStyle = "#ff0000";
+    // ctx.fillStyle = "#ff0000";
+    // 文本对齐选项 textAlign start(默认),end,left,right,center
+    ctx.textAlign = "center";
+    // 文本基线对齐 top,bottom,alphabetic(默认，字母基线)
+    ctx.textBaseline = "middle";
+    // 文本的方向
+    ctx.direction = "rtl";
+
+    // 填充渲染文字: 文本 文本起点x 文本起点y 文本最大宽度
+    ctx.strokeText("HELLO!", 300, 200, 100);
+    // ctx.fillText("若煋", 300, 200, 100);
+
+    ctx.arc(300, 200, 5, 0, 2 * Math.PI);
+    ctx.fill();
+
+</script>
+</body>
+</html>

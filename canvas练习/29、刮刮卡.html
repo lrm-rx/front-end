@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas实现刮刮卡</title>
+    <style>
+        .ggk{
+            width: 400px;
+            height: 200px;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 200px;
+            letter-spacing: 4px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="ggk">中五百万</div>
+<script>
+
+    // 创建元素
+    let canvas = document.createElement('canvas');
+    // 设置画布宽高
+    canvas.width = 400;
+    canvas.height = 200;
+    //添加到页面
+    document.body.appendChild(canvas)
+    //获取画笔
+    let ctx = canvas.getContext('2d');
+    let image = new Image();
+    image.src = "./media/dongman.jpg"
+    image.onload = function(){
+        ctx.drawImage(image,0,0,canvas.width,canvas.height)
+    }
+    //鼠标按下
+    let flag = false;
+    canvas.onmousedown = function(){
+        flag = true;
+    }
+    //鼠标弹起
+    canvas.onmouseup = function(){
+        flag = false;
+    }
+    //鼠标离开
+    canvas.onmouseleave = function(){
+        flag = false;
+    }
+    //鼠标移入事件
+    canvas.onmousemove = function(e){
+        if(!flag) return;
+        //鼠标在画布上的坐标
+        let x = e.pageX-canvas.offsetLeft;
+        let y = e.pageY-canvas.offsetTop;
+        // console.log(e);
+        ctx.beginPath()
+        ctx.globalCompositeOperation = 'destination-out';
+
+        // 画圆
+        // ctx.arc(x,y,10,0,2*Math.PI)
+        // 画椭圆(椭圆两个圆心)
+        ctx.ellipse(x,y,15,10,0,0,2*Math.PI)
+        ctx.fill()
+        ctx.closePath()
+    }
+
+    let m = Math.random()
+    console.log(m);
+    if(m<0.1){
+        document.querySelector('.ggk').innerHTML = "恭喜中一千万";
+    }else if(m<0.5){
+        document.querySelector('.ggk').innerHTML = "恭喜中五百万";
+    }else{
+        document.querySelector('.ggk').innerHTML = "恭喜中一百万"
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="c1" width="600" height="400"></canvas>
+<script>
+    // 找到画布
+    let c1 = document.querySelector('#c1');
+    // 获取画笔，上下文对象
+    let ctx = c1.getContext('2d');
+    let img = new Image();
+    img.src = "./media/dongman.jpg"
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0, 600, 400);
+        let imageData = ctx.getImageData(0, 0, 600, 400);
+        // 获取像素数据
+        console.log(imageData);
+        // 循环像素数据
+        // 灰度
+        // for (let i = 0; i < imageData.data.length; i += 4) {
+        //     // 计算出当前像素的平均值
+        //     let avg = (imageData.data[i] +
+        //             imageData.data[i + 1] +
+        //             imageData.data[i + 2]) / 3;
+        //     imageData.data[i] = avg;
+        //     imageData.data[i + 1] = avg;
+        //     imageData.data[i + 2] = avg;
+        //     imageData.data[i + 3] = 255;
+        // }
+        // // 将修改后的数据重新渲染到画布上
+        // ctx.putImageData(imageData, 0, 0);
+
+        // 反色
+        for (let i = 0; i < imageData.data.length; i += 4) {
+            // 计算出当前像素的平均值
+            imageData.data[i] = 255 - imageData.data[i];
+            imageData.data[i + 1] = 255 - imageData.data[i + 1];
+            imageData.data[i + 2] = 255 - imageData.data[i + 2];
+            imageData.data[i + 3] = 255;
+        }
+        // 将修改后的数据重新渲染到画布上
+        // ctx.putImageData(imageData, 0, 0);
+        ctx.putImageData(imageData, 0, 0, 300, 200, 300, 200);
+    }
+
+</script>
+</body>
+</html>
