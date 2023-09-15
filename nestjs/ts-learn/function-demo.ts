@@ -22,7 +22,7 @@ const add2: (arg1: number, arg2: number) => number = (
 // 函数重载
 function handleData(x: string): string[];
 function handleData(x: number): string;
-function handleData(x: boolean): null;
+// function handleData(x: boolean): null;
 
 function handleData(x: any) {
   if (typeof x === "string") {
@@ -33,5 +33,8 @@ function handleData(x: any) {
 }
 
 handleData("abc").join("_");
-// handleData(123).join("") // error
-handleData(false);
+// handleData(123).join("") // error 提示string上未有join方法
+// handleData(false); // error 类型boolean不能赋值给类型number或string
+
+// 函数重载不能使用在箭头函数中
+// const handleData1: (x: string) => string[]; // 这种方法行不通
