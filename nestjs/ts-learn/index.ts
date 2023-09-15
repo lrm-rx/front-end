@@ -18,3 +18,13 @@ const obj1: {} = {};
 
 const obj2: { msg: string; num: number } = { msg: "12", num: 2 };
 const obj3: { msg: string; num?: number } = { msg: "12" };
+obj3.num = 9;
+obj3.num = 1232;
+console.log(obj3);
+
+const arr: [] = [];
+const arr3: string[] = ["12312"];
+const arr4: (string | number)[] = ["23432", 4243];
+
+const arr1: Array<string> = ["123"];
+const arr2: Array<string | number> = ["123", 333];
