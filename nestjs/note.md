@@ -94,6 +94,8 @@
 
 ![](.\img\2.png)
 
+![](.\img\8.png)
+
 ## Nestjs 应用生命周期(非常重要)
 
 ![](.\img\1.png)
@@ -103,3 +105,18 @@
 ## Nestjs 用模块来组织代码
 
 ![](.\img\4.png)
+
+### DTO vs DAO
+
+> DTO: 数据传输对象
+> DAO: 数据访问对象
+
+![](.\img\5.png)
+
+## Nestjs 中的 DTO
+
+![](.\img\6.png)
+
+## Nestjs 中的实体类
+
+![](.\img\7.png)
