@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 
+// @ts-ignore
+// @ts-ignore
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/login",
@@ -191,7 +193,7 @@ const router = createRouter({
   routes,
 });
 // 解决路由跳转后回到顶部
-router.afterEach((to, from, next) => {
+router.afterEach(() => {
   window.scrollTo(0, 0);
 });
 export default router;
