@@ -1,5 +1,9 @@
 # webpack5
 
+> package.json
+> "build": "webpack --config ./webpack.dev.js",
+> 默认会执行 webpack.config.js 文件
+
 ### 入口文件 - entry
 
 > 作为应用打包的入口, 可以是一个, 也可以是多个. 两种配置方式:
@@ -56,3 +60,35 @@ entry: {
 - ts-loader
 - sass-loader
 - MiniCssExtractPlugin-loader
+
+#### 常用插件 - plugin
+
+- HtmlWebpackPlugin
+  - title - html document title
+  - filename - 输出 html 文件名
+  - template - 指定 html 模板, 一般指.html 文件
+  - templateParameters - 替换模板中的数据
+  - publicPath - script, style 的路径
+  - minify - 压缩配置
+- MiniCssExtractPlugin
+- CssMinimizerPlugin
+  > CssMinimizerPlugin - optimization.minimizer
+  - test - 文件匹配
+  - include - 文件包含
+  - exclude - 文件排除
+  - parallel - 是否启用多进程
+  - minify - 用 cssoMinify, cleanCssMinify, esbuildMinify, parcelCssMinify 替换 cssnanoMinify
+  - minimizerOptions - cssnano 优化选项
+- ESLintWebpackPlugin
+- TerserPlugin
+- PrefetchPlugin
+
+#### 构建模式 - mode
+
+> 根据 mode 使用不同的配置来构建
+
+- development: 开发模式, 会将 DefinePlugin 中的 NODE_ENV 设置为 development
+- production: 将 NODE_ENV 设置 development
+- node: 使用默认模式
+
+> **如果要根据 node 来改变打包行为, 必须要将配置导出为函数 - 命令行为方式传入参数时**
