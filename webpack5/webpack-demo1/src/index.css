@@ -1,4 +1,6 @@
 body {
   height: 300px;
-  background-color: pink;
+  /* background-color: pink; */
+  background: url("../assets/1.jpg") no-repeat;
+  background-size: cover;
 }

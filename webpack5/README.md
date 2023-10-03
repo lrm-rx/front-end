@@ -92,3 +92,12 @@ entry: {
 - node: 使用默认模式
 
 > **如果要根据 node 来改变打包行为, 必须要将配置导出为函数 - 命令行为方式传入参数时**
+
+#### 开发环境模式 - devserver
+
+- hot: 设置为 only 时编译出错改正不会刷新浏览器
+- open: 是否打开新的浏览器 tab
+- port: 打开时的端口, webpack5 可以设置为 auto 自动切换可用端口
+- proxy: 设置请求代理
+- server: 设置请求协议, 比如 http, https, spdy
+- static: 设置静态资源访问
