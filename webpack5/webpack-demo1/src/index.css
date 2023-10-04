@@ -3,4 +3,5 @@ body {
   /* background-color: pink; */
   background: url("../assets/1.jpg") no-repeat;
   background-size: cover;
+  transform: translate(0, 0);
 }

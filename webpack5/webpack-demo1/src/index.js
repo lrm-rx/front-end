@@ -1,6 +1,8 @@
 import React from "react";
 import "./index.css";
 import "./test.scss";
+import $1 from "jquery1";
+console.log("jquery:", $1);
 console.log("webpack");
 import("./log").then((log) => {
   log(666);

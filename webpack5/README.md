@@ -101,3 +101,68 @@ entry: {
 - proxy: 设置请求代理
 - server: 设置请求协议, 比如 http, https, spdy
 - static: 设置静态资源访问
+
+#### 使用 autoprefixer 兼容各个浏览器样式属性
+
+> 使用前缀做兼容 postcss-loader + autoprefixer
+
+- -moz 代表 firefox 浏览器私有属性
+- -ms 代表 IE 浏览器私有属性
+- -webkit 代表 chrome/safari 私有属性
+- -o 代表 opera 私有属性
+
+#### code spliting
+
+- 设置 entry 多入口
+- 设置 Entry Dependencies 共享依赖
+- 使用 import 动态导入模块
+- 设置内置的 SplitChunksPlugin 相关属性
+
+  > SplitChunksPlugin 配置
+  >
+  > - chunks: "async" | "initial" | "all"
+  > - minSize: 打包出的最小文件大小限制
+  > - minChunks: 最少共享 chunks 数, 默认 1
+
+#### 公共静态资源提取
+
+使用外链 - externals
+
+- 减少打包体积/提升构建效率
+- 减少重复 cdn 资源, 用户更新
+
+#### 将资源内联到 html 中
+
+内联的意义
+
+- 减少 http 请求, 提升性能
+- 复用资源, 提升开发效率和工程维护
+- 提高用户体验
+
+如何内联
+
+- html 片段: raw-loader or asset/source + html-webpack-plugin
+- js: 同 html
+- css: style-loader
+- 图片, 字体: asset | asset-inline or url-loader
+
+#### 如何实现多页面应用打包
+
+一个仓库多个页面
+**都需要打包出来, 并且是单独打包**
+
+如何打包
+
+- 入口文件区分: entry
+- 多个 html: html-webpack-plugin
+
+```javascript
+entry: {
+  index: {
+    import: "./src/index/index.js"
+  },
+  list: {
+    import: "./src/list/index.js"
+  }
+}
+```

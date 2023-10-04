@@ -32,47 +32,84 @@ module.exports = {
     // filename: "test-demo.js",
     // chunkFilename: "asset_[id].js",
     // library: "my_library",
-    library: {
-      name: "my_library",
-      type: "var", // 必填
-    },
+    // library: {
+    //   name: "my_library",
+    //   type: "var", // 必填
+    // },
   },
   module: {
     rules: [
       {
         test: /\.css$/,
         // use: ["style-loader", "css-loader"],
-        // use: [MiniCssExtractPlugin.loader, "css-loader"],
-        // use: ["loader1", "css-loader"],
         use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
           {
-            loader: "loader1",
+            loader: "postcss-loader",
             options: {
-              attributes: {
-                name: "loader1",
+              postcssOptions: {
+                plugins: [
+                  [
+                    "autoprefixer",
+                    {
+                      // 选项
+                      /**
+                       * 可以在package.json中添加
+                       *  "browserslist": [
+                       *  "last 10 Chrome versions",
+                       *  "last 5 Firefox versions",
+                       *  "Safari >= 6",
+                       *  "ie > 8"
+                       * ]
+                       */
+                      // browsers: [
+                      //   "last 10 Chrome versions",
+                      //   "last 5 Firefox versions",
+                      //   "Safari >= 6",
+                      //   "ie > 8",
+                      // ],
+                    },
+                  ],
+                ],
               },
             },
           },
-          "css-loader",
         ],
+        // use: ["loader1", "css-loader"],
+        // use: [
+        //   {
+        //     loader: "loader1",
+        //     options: {
+        //       attributes: {
+        //         name: "loader1",
+        //       },
+        //     },
+        //   },
+        //   "css-loader",
+        // ],
       },
       {
         test: /\.scss$/,
-        // use: ["style-loader", "css-loader", "sass-loader"],
+        use: ["style-loader", "css-loader", "sass-loader"],
         // use: ["css-loader", "loader1", "sass-loader"],
-        use: [
-          {
-            loader: "loader1",
-            options: {
-              attributes: {
-                name: "loader1",
-              },
-            },
-          },
-          "css-loader",
-          "sass-loader",
-        ],
+        // use: [
+        //   {
+        //     loader: "loader1",
+        //     options: {
+        //       attributes: {
+        //         name: "loader1",
+        //       },
+        //     },
+        //   },
+        //   "css-loader",
+        //   "sass-loader",
+        // ],
       },
+      // {
+      //   test: /inline\.*\.html/,
+      //   type: "asset/source",
+      // },
     ],
   },
   plugins: [
@@ -88,9 +125,22 @@ module.exports = {
     }),
   ],
   optimization: {
-    minimizer: [new CssMinimizerPlugin()],
+    minimizer: [
+      new CssMinimizerPlugin({
+        // test: /index\.css$/,
+        exclude: /test/,
+      }),
+    ],
+    splitChunks: {
+      chunks: "all",
+      minSize: 30000,
+      minChunks: 1,
+    },
   },
-  devtool: "source-map",
+  // devtool: "source-map",
+  externals: {
+    jquery1: "jQuery",
+  },
   devServer: {
     client: {
       // 设置用户端展示相关
