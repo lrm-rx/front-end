@@ -1,8 +1,5 @@
-# jsPDF和html2canvas下载PDF
+// jsPDF和html2canvas下载PDF
 
-当页数过多时需要优化:
-
-```JS
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
@@ -126,11 +123,7 @@ export function downloadPdf(dom) {
   });
 }
 
-```
 
-
-
-```js
 function toChangeRealPdf (result, ref, pageName, loading, margin = 10, colors = [0, 153, 217]) {
   const [color1, color2, color3] = colors
   // grid-stack
@@ -251,5 +244,4 @@ export function downloadPdf (ref, pageName, margin, colors) {
   })
 }
 
-```
 
