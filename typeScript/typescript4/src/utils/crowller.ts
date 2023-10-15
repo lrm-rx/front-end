@@ -1,14 +1,14 @@
 import fs from "fs";
 import path from "path";
 import superagent from "superagent";
-import Analyzer from "./analyzer";
-// import LeeAnalyzer from "./leeAnalyzer";
+// import Analyzer from "./analyzer";
 
 export interface IAnalyzer {
   analyze: (html: string, filePath: string) => string;
 }
 
 class Crowller {
+  private filePath = path.resolve(__dirname, "../../data/movie.json");
   async getRawHtml() {
     const res = await superagent.get(this.url);
     return res.text;
@@ -24,24 +24,19 @@ class Crowller {
     this.writeFile(fileContent);
   }
 
-  constructor(
-    private analyzer: IAnalyzer,
-    private url: string,
-    private filePath: string
-  ) {
+  constructor(private analyzer: IAnalyzer, private url: string) {
     this.initSpiderProcess();
   }
 }
 
-const url = `https://ssr1.scrape.center/page/${
-  Math.floor(Math.random() * 5) + 1
-}`;
-const filePath = path.resolve(__dirname, "../data/movie.json");
-const analyzer = Analyzer.getInstance();
-new Crowller(analyzer, url, filePath);
+export default Crowller;
 
-// const analyzer = new LeeAnalyzer();
-// new Crowller(analyzer, url, filePath);
+// const url = `https://ssr1.scrape.center/page/${
+//   Math.floor(Math.random() * 5) + 1
+// }`;
+// const filePath = path.resolve(__dirname, "../../data/movie.json");
+// const analyzer = Analyzer.getInstance();
+// new Crowller(analyzer, url);
 
-console.log("webpack5");
-console.log("webpack5");
+// console.log("webpack5");
+// console.log("webpack5");
