@@ -3,10 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
     <script src="./dist/page.js"></script>
   </head>
   <body></body>
 </html>
 <script>
-  new Home.Page();
+  require(["page"], function (page) {
+    new page.default();
+  });
 </script>
