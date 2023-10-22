@@ -32,7 +32,8 @@ import "reflect-metadata";
 // ------------------------------------------------------
 
 function showData(target: typeof User) {
-  console.log(target.prototype);
+  // ? 这里取不到target.prototype
+  console.log("对象:", target.prototype);
   for (const key in target.prototype) {
     const data = Reflect.getMetadata("data", target.prototype, key);
     console.log(data);
