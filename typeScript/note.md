@@ -1,6 +1,6 @@
 # typescript
 
-### TS关于泛类约束Partial＜T＞、Required＜T＞、Readonly＜T＞、Pick/Omit、Exclude、Extract、ReturnType
+### TS关于泛类约束Partial＜T＞、Required＜T＞、Readonly＜T＞、Pick/Omit、Exclude、Extract、ReturnType、Record
 
 #### Partial＜T＞：快速把某个接口类型中定义的属性变成可选
 
@@ -134,6 +134,35 @@ type A = ReturnType<typeof f>
 ```
 
 
+
+#### Record
+
+> `Record`的内部定义，接收两个泛型参数；`Record`后面的泛型就是对象键和值的类型
+>
+> 作用 :义一个对象的 key 和 value 类型
+
+> 源码
+
+```typescript
+Record<key type, value type> 
+```
+
+>`Record<string, never>` 空对象
+> `Record<string, unknown> `任意对象
+> `{}` 任何不为空的对象
+
+```typescript
+type Record<K extends string | number | symbol, T> = {
+    [P in K]: T;
+}
+```
+
+> **逐步解析**
+
+>泛型K即为第一次参数
+> p in xx 又是什么意思呢？
+> in的意思就是遍历，如上就是将 类型string进行遍历，也就是string
+> 每个属性都是传入的T类型，如 string: PersonModel
 
 ### ts装饰器
 

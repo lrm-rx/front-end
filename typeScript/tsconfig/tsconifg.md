@@ -12,7 +12,7 @@
     "disableReferencedProjectLoad": true /* 减少TypeScript自动加载的项目数量 */,
 
     /* Language and Environment */
-    "target": "es2016" /* 为已发出的JavaScript设置JavaScript语言版本，并包含兼容的库声明 */,
+    "target": "es5" /* 为已发出的JavaScript设置JavaScript语言版本，并包含兼容的库声明 */,
     "lib": [] /* 指定一组描述目标运行时环境的绑定库声明文件 */,
     "jsx": "preserve" /* 指定生成的JSX代码 */,
     "experimentalDecorators": true /* 启用对TC39第2阶段草稿装饰器的实验性支持 */,
