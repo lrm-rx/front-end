@@ -2,18 +2,11 @@ import express, { Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
 import "./controller/LoginController";
-import "./controller/crowllerController";
-import { router } from "./controller/decorator";
-
-// 问题1: express 库的类型定义文件 .d.ts 文件类型描述不准确
-// 问题2: 当使用中间件的时候, 对 req 或 res做了修改之后呢, 实际上类型并不能改变
+import "./controller/CrowllerController";
+import router from "./router";
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use((req: Request, res: Response, next: NextFunction) => {
-//   req.teacherName = "ming";
-//   next();
-// });
 app.use(
   cookieSession({
     name: "session",

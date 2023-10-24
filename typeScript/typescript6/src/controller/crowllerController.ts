@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import "reflect-metadata";
 import { Request, Response, NextFunction } from "express";
-import { controller, get, use } from "./decorator";
+import { controller, use, get } from "../decorator";
 import { getResponseData } from "../utils/util";
 import Crowller from "../utils/crowller";
 import Analyzer from "../utils/analyzer";
@@ -14,7 +14,8 @@ interface BodyRequest extends Request {
 }
 
 const checkLogin = (req: Request, res: Response, next: NextFunction) => {
-  const isLogin = req.session ? req.session.login : false;
+  const isLogin = !!(req.session ? req.session.login : false);
+  console.log("checkLogin middleware");
   if (isLogin) {
     next();
   } else {
@@ -22,10 +23,16 @@ const checkLogin = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-@controller
-class CrowllerController {
+const test = (req: Request, res: Response, next: NextFunction) => {
+  console.log("test middleware");
+  next();
+};
+
+@controller("/")
+export class CrowllerController {
   @get("/getData")
   @use(checkLogin)
+  @use(test)
   getData(req: BodyRequest, res: Response) {
     const url = `https://ssr1.scrape.center/page/${
       Math.floor(Math.random() * 5) + 1
