@@ -6,7 +6,7 @@ import "./controller/CrowllerController";
 import router from "./router";
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(
   cookieSession({
     name: "session",

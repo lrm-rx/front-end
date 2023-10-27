@@ -1,18 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { LockOutlined } from "@ant-design/icons";
-import { Button, Form, Input } from "antd";
-import "./login.css";
+import { Button, Form, Input, message } from "antd";
+import { useNavigate } from "react-router-dom"
+import qs from "qs";
+import axios from "axios"
+import "./style.css";
 
+interface Iform {
+  password: string
+}
 const Login: React.FC = () => {
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+  const navigate = useNavigate();
+  useEffect(() => {
+    axios.get("/api/isLogin").then(res => {
+      if (res.data?.data) {
+        navigate("/")
+      }
+    }).catch(error => {
+      console.warn(error)
+    })
+  })
+
+  const onFinish = (values: Iform) => {
+    axios.post("/api/login", values).then(res => {
+      if (res.data?.data) {
+        navigate("/")
+      } else {
+        message.error("登录失败!")
+      }
+    }).catch(error => {
+      console.warn(error)
+    })
   };
 
   return (
     <div className="login-page">
       <Form
         name="normal_login"
-        className="login-form"
         initialValues={{ remember: true }}
         onFinish={onFinish}
       >

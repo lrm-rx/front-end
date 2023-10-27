@@ -9,13 +9,14 @@ interface BodyRequest extends Request {
   };
 }
 
-@controller("/")
+@controller("/api")
 export class LoginController {
   static isLogin(req: BodyRequest): boolean {
     return !!(req.session ? req.session.login : false);
   }
   @post("/login")
   login(req: BodyRequest, res: Response) {
+    console.log(req.body);
     const { password } = req.body;
     const isLogin = LoginController.isLogin(req);
     if (isLogin) {
@@ -36,6 +37,12 @@ export class LoginController {
       req.session.login = undefined;
     }
     res.json(getResponseData(true));
+  }
+
+  @get("/isLogin")
+  isLogin(req: BodyRequest, res: Response) {
+    const isLogin = LoginController.isLogin(req);
+    res.json(getResponseData(isLogin));
   }
 
   @get("/")

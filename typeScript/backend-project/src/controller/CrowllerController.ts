@@ -28,7 +28,7 @@ const test = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-@controller("/")
+@controller("/api")
 export class CrowllerController {
   @get("/getData")
   @use(checkLogin)
@@ -47,10 +47,8 @@ export class CrowllerController {
     try {
       const position = path.resolve(__dirname, "../../data/movie.json");
       const result = fs.readFileSync(position, "utf-8");
-      // res.json(JSON.parse(result));
       res.json(getResponseData(JSON.parse(result)));
     } catch (error) {
-      // res.send("暂无数据!");
       res.json(getResponseData(false, "暂无数据!"));
     }
   }
