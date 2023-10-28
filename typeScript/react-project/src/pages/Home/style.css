@@ -1,7 +1,14 @@
 .home-page {
-  width: 300px;
-  margin: 100px auto;
+  width: 400px;
+  margin: 10px auto;
   padding: 20px;
-  border: 1px solid #ccc;
   border-radius: 2px;
+}
+
+.chartbox {
+  width: 800px;
+  height: 400px;
+  padding: 8px;
+  margin: 10px auto;
+  box-sizing: border-box;
 }

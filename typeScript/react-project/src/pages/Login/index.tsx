@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { LockOutlined } from "@ant-design/icons";
 import { Button, Form, Input, message } from "antd";
-import { useNavigate } from "react-router-dom"
-import qs from "qs";
-import axios from "axios"
+import { useNavigate } from "react-router-dom";
+import request from "../request"
 import "./style.css";
 
 interface Iform {
@@ -12,24 +11,24 @@ interface Iform {
 const Login: React.FC = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    axios.get("/api/isLogin").then(res => {
-      if (res.data?.data) {
+    request.get("/api/isLogin").then(res => {
+      if (res?.data) {
         navigate("/")
       }
     }).catch(error => {
-      console.warn(error)
+      message.error(error)
     })
   })
 
   const onFinish = (values: Iform) => {
-    axios.post("/api/login", values).then(res => {
-      if (res.data?.data) {
+    request.post("/api/login", values).then(res => {
+      if (res?.data) {
         navigate("/")
       } else {
         message.error("登录失败!")
       }
     }).catch(error => {
-      console.warn(error)
+      message.error(error)
     })
   };
 

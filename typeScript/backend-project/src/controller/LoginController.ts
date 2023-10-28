@@ -20,14 +20,14 @@ export class LoginController {
     const { password } = req.body;
     const isLogin = LoginController.isLogin(req);
     if (isLogin) {
-      res.json(getResponseData(false, "已登录"));
+      res.json(getResponseData<responseResult.login>(false, "已登录"));
       return;
     }
     if (password === "111" && req.session) {
       req.session.login = true;
-      res.json(getResponseData(true));
+      res.json(getResponseData<responseResult.login>(true));
     } else {
-      res.json(getResponseData(false, "登录失败!"));
+      res.json(getResponseData<responseResult.login>(false, "登录失败!"));
     }
   }
 
@@ -36,13 +36,14 @@ export class LoginController {
     if (req.session) {
       req.session.login = undefined;
     }
-    res.json(getResponseData(true));
+    res.json(getResponseData<responseResult.logout>(true));
   }
 
   @get("/isLogin")
   isLogin(req: BodyRequest, res: Response) {
     const isLogin = LoginController.isLogin(req);
-    res.json(getResponseData(isLogin));
+    const result = getResponseData<responseResult.isLogin>(isLogin);
+    res.json(result);
   }
 
   @get("/")

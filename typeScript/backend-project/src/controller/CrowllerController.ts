@@ -39,7 +39,7 @@ export class CrowllerController {
     }`;
     const analyzer = Analyzer.getInstance();
     new Crowller(analyzer, url);
-    res.json(getResponseData(true));
+    res.json(getResponseData<responseResult.getData>(true));
   }
   @get("/showData")
   @use(checkLogin)
@@ -49,7 +49,7 @@ export class CrowllerController {
       const result = fs.readFileSync(position, "utf-8");
       res.json(getResponseData(JSON.parse(result)));
     } catch (error) {
-      res.json(getResponseData(false, "暂无数据!"));
+      res.json(getResponseData<boolean>(false, "暂无数据!"));
     }
   }
 }
