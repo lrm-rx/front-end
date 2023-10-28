@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02_字符串反转和内容隐藏功能</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<script>
+  // Vue.createApp({
+  //   template: `
+  //     <div>
+  //       {{ content }}
+  //       <button @click="handleBtnClick">反转</button>
+  //     </div>
+  //   `,
+  //   data() {
+  //     return {
+  //       content: "hello world",
+  //     };
+  //   },
+  //   methods: {
+  //     handleBtnClick() {
+  //       this.content = this.content.split("").reverse().join("");
+  //     },
+  //   },
+  // }).mount("#root");
+
+  Vue.createApp({
+    template: `
+      <div>
+        <span v-if="isShow">这是一段内容</span>
+        <div>--------------</div>
+        <button @click="handleBtnClick">显示/隐藏</button>
+      </div>
+    `,
+    data() {
+      return {
+        isShow: true,
+      };
+    },
+    methods: {
+      handleBtnClick() {
+        this.isShow = !this.isShow;
+      },
+    },
+  }).mount("#root");
+</script>

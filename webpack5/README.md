@@ -166,3 +166,24 @@ entry: {
   }
 }
 ```
+
+#### eslint 在 webpack中如何配置
+
+**eslint基本使用**
+
+- why 保持代码风格统一, 提升代码健壮性
+- what 按照规则做静态代码分析
+- how 使用安装eslint, 配置.eslintrc.js
+
+#### 构建中使用eslint
+
+```
+
+start build ---->  eslint ----> build succ
+                      |
+                      |  error
+                      V
+                  build fail
+                  
+```
+

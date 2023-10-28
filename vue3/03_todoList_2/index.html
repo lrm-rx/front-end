@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02_todoList</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 500px;
+      margin: 100px auto;
+    }
+    ul {
+      margin-top: 10px;
+    }
+    li {
+      list-style: none;
+    }
+    /* li > span {
+      display: none;
+      margin-left: 100px;
+    }
+    li:hover span {
+      display: inline-block;
+    } */
+    li > span:hover {
+      cursor: pointer;
+      color: red;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<script>
+  Vue.createApp({
+    template: `
+      <div class="container">
+        <input @keydown.enter="handleAddItem" v-model.trim="inputText" />
+        <ul>
+          <li v-for="item, index in list" :key="index">{{ item }} ------- <span @click="delItem(item)">删除</span></li>
+        </ul>  
+      </div>
+    `,
+    data() {
+      return {
+        inputText: "",
+        list: ["java", "javascript", "vue3", "react18"],
+      };
+    },
+    methods: {
+      handleAddItem() {
+        if (!this.inputText) {
+          alert("请输入内容并按回车!");
+          return;
+        }
+        this.list.unshift(this.inputText);
+        this.inputText = "";
+      },
+      delItem(value) {
+        const elIndex = this.list.indexOf(value);
+        this.list.splice(elIndex, 1);
+      },
+    },
+  }).mount("#root");
+</script>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello world</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<script>
+  Vue.createApp({
+    template: "<div>{{ content }}</div>",
+    data() {
+      return {
+        content: 1,
+        timer: null,
+      };
+    },
+    mounted() {
+      this.timer = setInterval(() => {
+        this.content += 1;
+      }, 1000);
+    },
+    beforeUnmount() {
+      clearInterval(this.timer);
+    },
+  }).mount("#root");
+</script>

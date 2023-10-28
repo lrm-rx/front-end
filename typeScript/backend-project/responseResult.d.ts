@@ -6,9 +6,9 @@ declare namespace responseResult {
   interface DataStructure {
     [key: string]: IItem[];
   }
-  export type isLogin = boolean;
-  export type login = boolean;
-  export type logout = boolean;
-  export type getData = boolean;
-  export type showData = DataStructure | boolean;
+  type isLogin = boolean;
+  type login = boolean;
+  type logout = boolean;
+  type getData = boolean;
+  type showData = DataStructure | boolean;
 }
