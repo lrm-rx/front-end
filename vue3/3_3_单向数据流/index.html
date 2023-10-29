@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3_3_单向数据流</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<script>
+  // v-bind="params"
+  // :content="params.content" :a="params.a" :b="params.b" :c="params.c"
+  // 属性传的时候使用 content-abc 命名, 接的时候要使用 contentAbc 命名
+  const app = Vue.createApp({
+    template: `
+        <div>
+          <test v-bind="params" />
+          <div>-------------</div>
+          <count :count="count"  @changeNum="changeNum" />
+        </div>
+      `,
+    data() {
+      return {
+        count: 1,
+        num: 123,
+        a: 456,
+        b: 789,
+        c: 999,
+        params: {
+          content: 123,
+          a: 456,
+          b: 789,
+          c: 999,
+        },
+      };
+    },
+    methods: {
+      changeNum(value) {
+        this.count += value;
+      },
+    },
+  });
+
+  app.component("test", {
+    props: ["content", "a", "b", "c"],
+    template: `<div>{{content}} --{{a}}--{{b}}--{{c}}</div>`,
+  });
+
+  app.component("count", {
+    props: ["count"],
+    template: `<div @click="changeCount">{{count}}</div>`,
+    methods: {
+      changeCount() {
+        this.$emit("changeNum", 2);
+      },
+    },
+  });
+
+  const vm = app.mount("#root");
+</script>

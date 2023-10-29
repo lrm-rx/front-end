@@ -11,15 +11,22 @@
   </body>
 </html>
 <script>
+  // input, textarea, checkbox, radio, select
+  // 修饰符 lazy, number, trim
   const app = Vue.createApp({
     template: `
       <div>
-        <input v-model="inputText" />  
+        {{message}}
+        <input type="checkbox" v-model="message" true-value="hello" false-value="world" />
+        <div>----------</div>
+        <span>{{inputText}}</span>
+        <input v-model.lazy="inputText" />
       </div>
     `,
     data() {
       return {
         inputText: "",
+        message: "world",
       };
     },
     methods: {},

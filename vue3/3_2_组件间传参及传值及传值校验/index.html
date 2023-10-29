@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3_2_组件间传参及传值及传值校验</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<script>
+  const app = Vue.createApp({
+    template: `
+        <div>
+          <test :content="num" />
+        </div>
+      `,
+    data() {
+      return {
+        num: 8908,
+      };
+    },
+  });
+
+  // type: String, Boolean, Array, Object, Function, Symbol
+  // required 必填
+  // default 默认值
+  // validator 校验
+  app.component("test", {
+    // props: ["content"],
+    // props: {
+    //   content: String,
+    // },
+    props: {
+      content: {
+        type: Number,
+        validator(value) {
+          return value < 1000;
+        },
+        default: () => 123,
+      },
+    },
+    template: `<div>{{typeof content}}</div>`,
+  });
+
+  const vm = app.mount("#root");
+</script>

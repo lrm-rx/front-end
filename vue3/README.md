@@ -25,3 +25,8 @@ Vue 的事件传递
 > 按键事件指令@keydown
 > @keydown 的按键修饰符.enter
 > @keydown 的按键修饰符 tab、delete、esc、up、down、left、right 等
+
+### 单向数据流
+
+> v-bind="params"
+> :content="params.content" :a="params.a" :b="params.b" :c="params.c"
