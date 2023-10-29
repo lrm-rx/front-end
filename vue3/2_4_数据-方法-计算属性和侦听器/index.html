@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2_4_数据-方法-计算属性和侦听器</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<script>
+  // data & methods & computed & watcher
+  const app = Vue.createApp({
+    template: `
+      <div @click="changeNum">
+        {{message}}
+        <div>{{count}}</div>
+        <div>-------------------</div>
+        <div>{{obj.num}}</div>
+        <div>{{num1}}</div>
+        <div>名字: {{student.uname}}</div>
+      </div>
+    `,
+    watch: {
+      obj: {
+        // 注意: 因为引用地址一样, 这两个值是相等的
+        // 解决办法: 1. 监听对象的值 ''  2. 通过计算属性 深拷贝再监听
+        handler(newVal, oldVal) {
+          console.log("newVal:", newVal.num);
+          console.log("oldVal:", oldVal?.num);
+        },
+        immediate: true, // oldVal为 undefined
+        deep: true,
+      },
+      "obj.num": {
+        handler(newVal, oldVal) {
+          console.log("新值:", newVal);
+          console.log("旧值:", oldVal);
+        },
+        immediate: true,
+      },
+      num1(n, o) {
+        console.log("n:", n);
+        console.log("o:", o);
+      },
+    },
+    computed: {
+      // count() {
+      //   return this.num + 10;
+      // },
+      count: {
+        get() {
+          return this.num + 10;
+        },
+        set(value) {
+          this.num = value;
+        },
+      },
+    },
+    data() {
+      return {
+        message: "hello world",
+        num: 1,
+        obj: {
+          num: 0,
+        },
+        num1: 10,
+        student: {
+          id: 1,
+          uname: "ming",
+        },
+      };
+    },
+    methods: {
+      changeNum() {
+        this.num++;
+        this.obj.num += 2;
+        this.num1 += 10;
+        this.count = 100;
+        this.student.uname = "letme";
+      },
+    },
+  });
+  const vm = app.mount("#root");
+</script>

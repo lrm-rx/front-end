@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2_5_样式绑定</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <style>
+    .red {
+      color: red;
+    }
+    .green {
+      color: green;
+    }
+    .skyblue {
+      color: skyblue;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<script>
+  const app = Vue.createApp({
+    template: `
+      <div :class="classArray">2_5_样式绑定
+        <demo class="red" />
+        <div :style="styleObject">2_5_样式绑定 style</div>
+      </div>
+    `,
+    data() {
+      return {
+        classString: "red",
+        classObject: { red: false, green: true },
+        classArray: ["red", "green", { skyblue: true }],
+        styleString: "color: yellow",
+        styleObject: {
+          color: "orange",
+        },
+      };
+    },
+  });
+
+  app.component("demo", {
+    // template: `<div>子组件: demo</div>`,
+    template: `<div :class="$attrs.class">子组件: demo1</div><div :class="$attrs.class">子组件: demo2</div>`,
+  });
+  const vm = app.mount("#root");
+</script>

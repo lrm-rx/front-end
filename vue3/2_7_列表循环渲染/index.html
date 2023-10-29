@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2_7_列表循环渲染</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<script>
+  const app = Vue.createApp({
+    template: `
+      <div v-for="item,index in list" :key="index">
+        {{item}} --- {{index}}
+      </div>
+      <div>---------</div>
+      <div v-for="(value,key, index) in studentObject" :key="index">
+        {{key}} --- {{value}}---{{index}}
+      </div>
+      <button @click="handleAddBtnClick">新增</button>
+    `,
+    data() {
+      return {
+        list: ["java", "javascript", "vue", "react"],
+        studentObject: {
+          id: "001",
+          name: "ming",
+          age: 19,
+          gender: "男",
+        },
+      };
+    },
+    methods: {
+      handleAddBtnClick() {
+        // this.$set(this.studentObject, "No", 1003); // vue3已经不能这么使用了
+        this.studentObject.No = 1003;
+        this.list[0] = "go";
+      },
+    },
+  });
+  const vm = app.mount("#root");
+</script>

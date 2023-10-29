@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2_9_表单中双向绑定指令的使用</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<script>
+  const app = Vue.createApp({
+    template: `
+      <div>
+        <input v-model="inputText" />  
+      </div>
+    `,
+    data() {
+      return {
+        inputText: "",
+      };
+    },
+    methods: {},
+  });
+  const vm = app.mount("#root");
+</script>

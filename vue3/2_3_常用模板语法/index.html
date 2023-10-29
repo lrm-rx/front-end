@@ -8,8 +8,11 @@
   </head>
   <body>
     <div id="root">
-      <div>{{message}}</div>
+      <div @click="changeMsg" :title="message">{{message}}</div>
       <div v-html="message"></div>
+      <div v-if="true">111</div>
+      <div v-show="false">222</div>
+      <div @[event]="changeMsg" :[attr]="message">{{message}}</div>
     </div>
   </body>
 </html>
@@ -18,9 +21,15 @@
     data() {
       return {
         message: "hello world",
+        event: "click",
+        attr: "title",
       };
     },
-    methods: {},
+    methods: {
+      changeMsg() {
+        this.message = "lpl";
+      },
+    },
   });
   const vm = app.mount("#root");
 </script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2_6_条件渲染</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<script>
+  // v-fi  v-else-if  v-else   v-show
+  const app = Vue.createApp({
+    template: `
+      <div>
+        2_6_条件渲染
+        <div v-if="show1">v-if</div>
+        <div v-else>v-else</div>
+        <div v-show="show2">v-show</div>
+      </div>
+    `,
+    data() {
+      return {
+        show1: true,
+        show2: true,
+      };
+    },
+  });
+  const vm = app.mount("#root");
+</script>

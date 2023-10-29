@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2_8_事件绑定</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<script>
+  /**
+   * 一. 事件修饰符
+   *     1. .stop 防止事件冒泡
+   *     2. .self 只有点击当前绑定的dom元素上的事件才触发
+   *     3. .prevent 阻止默认行为
+   *     4. .capture 事件捕获
+   *     5. .once 只执行一次
+   *     6. @scroll.passive 提高滚动性能
+   *
+   * 二. 按键修饰符
+   *     enter, tab, delete, esc, up, down, left, right
+   *
+   * 三. 鼠标修饰符
+   *    left, right, middle
+   * 四. 精确修饰符
+   *    exact
+   */
+  const app = Vue.createApp({
+    template: `
+      <button @click="handleBtnClick(2, $event)">
+        2_8_事件绑定({{count}})
+      </button>
+      <button @click="handleBtnClick1(), handleBtnClick2()">
+        2_8_事件绑定
+      </button>
+    `,
+    data() {
+      return {
+        count: 0,
+      };
+    },
+    methods: {
+      handleBtnClick(val, event) {
+        console.log(event);
+        this.count += val;
+      },
+      handleBtnClick1() {
+        alert(1);
+      },
+      handleBtnClick2() {
+        alert(2);
+      },
+    },
+  });
+  const vm = app.mount("#root");
+</script>
