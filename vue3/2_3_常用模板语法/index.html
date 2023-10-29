@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2_3_常用模板语法</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <div>{{message}}</div>
+      <div v-html="message"></div>
+    </div>
+  </body>
+</html>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        message: "hello world",
+      };
+    },
+    methods: {},
+  });
+  const vm = app.mount("#root");
+</script>

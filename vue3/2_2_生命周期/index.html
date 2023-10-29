@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2_1_Vue中应用和组件的基础概念</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<script>
+  const app = Vue.createApp({
+    template: `
+      <div>
+        {{ message }} --- <button @click="changeMsg">修改</button>
+      </div>
+    `,
+    data() {
+      return {
+        message: "hello world",
+      };
+    },
+    methods: {
+      changeMsg() {
+        this.message = "lpl";
+      },
+    },
+    // 实例生成之前执行
+    beforeCreate() {
+      console.log("beforeCreate");
+    },
+    // 实例生成之后执行
+    created() {
+      console.log("created");
+    },
+    // 在组件内容被渲染到页面之前执行
+    beforeMount() {
+      console.log("beforeMount");
+    },
+    // 在组件内容被渲染到页面之后执行
+    mounted() {
+      console.log("mounted");
+    },
+    // 在组件数组更新之前执行
+    beforeUpdate() {
+      console.log("beforeUpdate");
+    },
+    // 在组件数组更新之后执行
+    updated() {
+      console.log("updated");
+    },
+    // 在组件被销毁之前执行  ----------  在 控制台 输入  app.unmount() 调试
+    beforeUnmount() {
+      console.log("beforeUnmount");
+    },
+    // 在组件被销毁之后执行
+    unmounted() {
+      console.log("unmounted");
+    },
+  });
+  const vm = app.mount("#root");
+</script>

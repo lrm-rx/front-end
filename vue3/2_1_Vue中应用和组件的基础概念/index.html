@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2_1_Vue中应用和组件的基础概念</title>
+    <script src="https://unpkg.com/vue@3.3.7/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+<script>
+  // createApp 表示创建一个 Vue 应用, 存储到 app 变量中
+  // 传入的参数表示这个应用最外层的组件应该如何展示
+  // mvvm 设计模式, vm  -->  model 数据, v --> view 视图, vm --> viewModel 视图数据连接层
+  const app = Vue.createApp({
+    template: `
+      <div>
+        {{ message }}  
+      </div>
+    `,
+    data() {
+      return {
+        message: "hello world",
+      };
+    },
+  });
+  // vm 代表的就是 vue 应用的根组件
+  const vm = app.mount("#root");
+</script>
