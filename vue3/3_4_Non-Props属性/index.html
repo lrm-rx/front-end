@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3_4_Non-Props属性</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // Non-prop 属性 ----> $attrs
+  const app = Vue.createApp({
+    template: `
+      <div>
+        <counter msg="hello" msg1="hello1" />
+      </div>
+    `
+  });
+
+  app.component('counter', {
+    // inheritAttrs: false,
+    mounted() {
+      console.log(this.$attrs.msg);
+    },
+    template: `
+      <div :msg="$attrs.msg">Counter</div>
+      <div v-bind="$attrs">Counter</div>
+      <div :msg1="$attrs.msg1">Counter</div>
+    `
+  });
+
+  const vm = app.mount('#root');
+</script>
+</html>
