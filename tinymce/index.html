@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="./tinymce/tinymce.min.js"></script>
-    <script src="./tinymce/langs/zh-Hans.js"></script>
-  </head>
-  <body>
-    <div id="tinydemo"></div>
-    <button class="btn">获取内容</button>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="./tinymce/tinymce.min.js"></script>
+  <script src="./tinymce/langs/zh-Hans.js"></script>
+</head>
+
+<body>
+  <div id="tinydemo"></div>
+  <button class="btn">获取内容</button>
+</body>
+
 </html>
 <script>
   // tinymce.init({
@@ -88,6 +91,7 @@
     visualchars_default_state: true, //显示不可见字符
     image_caption: true,
     paste_data_images: true,
+    images_file_types: "jpeg,jpg,png,gif,bmp,webp",
     relative_urls: false,
     // remove_script_host : false,
     removed_menuitems: "newdocument", //清除“文件”菜单
@@ -96,13 +100,42 @@
     toolbar:
       "bullist numlist anchor charmap emoticons fullscreen hr image insertdatetime link media pagebreak paste preview print searchreplace textcolor wordcount",
     //选中时出现的快捷工具，与插件有依赖关系
-    images_upload_url:
-      "/upload/uploadFile" /*后图片上传接口*/ /*返回值为json类型 {'location':'uploads/jpg'}*/,
+    // images_upload_url: "/upload/uploadFile" /*后图片上传接口*/ /*返回值为json类型 {'location':'uploads/jpg'}*/,
     setup: function (editor) {
       editor.on("change", function () {
         editor.save();
       });
     },
+    init_instance_callback: function (editor) {
+      editor.on('paste', (event) => {
+        // 实现图⽚粘贴上传
+        const items = (event.clipboardData || window.clipboardData).items;
+        // items为伪数组微信/QQ截图以及此富⽂本区域内复制粘贴的length为1,⿏标右键复制粘贴图⽚以及⽂本的复制粘贴的length为2;
+        let len = items.length;
+        for (let i = 0; i < len; i++) {
+          if (items[i].kind == "file" && items[i].type.indexOf("image") != -1) {
+            // 判断是否为图⽚类型
+            event.preventDefault(); // 如果是图⽚阻⽌⾃动粘贴到富⽂本编辑器
+            let file = items[i].getAsFile(); // 获取⽂件数据
+            let blob = new Blob([file], { type: file.type }); //实例化⼀个blob 将图⽚⼤⼩以及类型初始化到blob⾥
+            // fileName --- 图⽚名称可⾃⾏处理
+            console.log("粘贴的是图⽚类型", blob, file);
+            tinymce.execCommand(
+              "mceReplaceContent",
+              false,
+              `<img src="https://t7.baidu.com/it/u=4162611394,4275913936&fm=193&f=GIF" >`
+            );
+
+          } else {
+            // 不是图⽚类型直接粘贴, 跳过oss上传处理
+            console.log("粘贴的不是图⽚");
+          }
+        }
+      })
+    },
+    images_upload_handler: (blobInfo, success, failure) => {
+      if (Object.prototype.toString.call(blobInfo.blob()) === "[object Blob]") return;
+    }
   });
   const btn = document.getElementsByClassName("btn")[0];
   btn.onclick = function () {
