@@ -1,7 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 
-// @ts-ignore
-// @ts-ignore
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/login",
@@ -15,6 +13,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/login/privacyPolicy",
     component: () => import("@/views/login/privacyPolicy.vue"),
   },
+
   {
     path: "/task",
     component: () => import("@/views/task/index.vue"),
@@ -24,13 +23,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/task/search.vue"),
   },
   {
-    path: "/task/details",
+    path: "/task/details/:id",
     component: () => import("@/views/task/details.vue"),
   },
   {
-    path: "/task/companySource",
+    path: "/task/companySource/:id",
     component: () => import("@/views/task/companySource.vue"),
   },
+
   {
     path: "/contract",
     component: () => import("@/views/contract/index.vue"),
@@ -43,6 +43,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/contract/progress/:id",
     component: () => import("@/views/contract/progress.vue"),
   },
+
   {
     path: "/message",
     component: () => import("@/views/message/index.vue"),
@@ -59,10 +60,12 @@ const routes: Array<RouteRecordRaw> = [
     path: "/message/talk/:taskId/:userId",
     component: () => import("@/views/message/talk.vue"),
   },
+
   {
     path: "/message/talent/:resumeId/:userId",
     component: () => import("@/views/message/talent.vue"),
   },
+
   {
     path: "/my",
     component: () => import("@/views/my/index.vue"),
@@ -175,6 +178,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/my/coupon/rule",
     component: () => import("@/views/my/coupon/rule.vue"),
   },
+
   {
     path: "/talent",
     component: () => import("@/views/talent/index.vue"),
