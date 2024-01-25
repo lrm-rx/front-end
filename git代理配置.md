@@ -8,4 +8,7 @@ git config --global http.proxy http://127.0.0.1:10809
 
 // 取消git的代理服务器地址
 git config --global --unset http.proxy http://127.0.0.1:9666
+
+// 查看git的全局配置信息
+git config --global --list
 ```
