@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.global.js"></script>
+</head>
+<body>
+  <!-- <div id="app">
+    {{ n1 }} * {{ n2 }} = {{ n3 }}
+  </div>
+  <script>
+
+    let vm = Vue.createApp({
+      data(){
+        return {
+          n1: 3,
+          n2: 4
+        }
+      },
+      computed: {
+        n3(){
+          return this.n1 * this.n2;
+        }
+      }
+    }).mount('#app');
+
+    setTimeout(()=>{
+      vm.n1 = 5;
+    }, 2000)
+
+  </script> -->
+
+  <!-- <div id="app">
+    {{ n1 }} * {{ n2 }} = {{ n3 }}
+  </div>
+  <script>
+
+    let vm = Vue.createApp({
+      data(){
+        return {
+          n1: 3,
+          n2: 4,
+          n3: 12
+        }
+      },
+      watch: {
+        n1(newVal, oldVal){
+          this.n3 = newVal * this.n2;
+        },
+        n2(newVal, oldVal){
+          this.n3 = newVal * this.n1;
+        }
+      }
+    }).mount('#app');
+
+    setTimeout(()=>{
+      vm.n1 = 5;
+    }, 2000)
+
+  </script> -->
+
+  <div id="app">
+    {{ n1 }} * {{ n2 }} = {{ n3 }}
+  </div>
+  <script>
+
+    let vm = Vue.createApp({
+      data(){
+        return {
+          n1: 3,
+          n2: 4,
+          n3: 12
+        }
+      },
+      watch: {
+        n3(newVal, oldVal){
+          let ret = [];
+          for(let i=1;i<=newVal;i++){
+            if( newVal%i === 0 ){
+              ret.push([i, newVal/i]);
+            }
+          }
+          let now = ret[ Math.floor(Math.random()*ret.length) ];
+          this.n1 = now[0];
+          this.n2 = now[1];
+        }
+      }
+    }).mount('#app');
+
+    setTimeout(()=>{
+      vm.n3 = 20;
+    }, 2000)
+
+  </script>
+</body>
+</html>

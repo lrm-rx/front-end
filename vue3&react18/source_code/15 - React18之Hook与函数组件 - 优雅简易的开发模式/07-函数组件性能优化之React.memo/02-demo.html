@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    let app = document.querySelector('#app');
+    let root = ReactDOM.createRoot(app);
+    let { useState } = React;
+
+    let Welcome = (props) => {  
+      const [ count, setCount ] = useState(0);
+      const handleClick= () => {
+        setCount(1);
+      }
+      return (
+        <div>
+          <button onClick={handleClick}>点击</button>
+          hello Welcome
+          <Head count={count} />
+        </div>
+      );
+    }
+
+    let Head = React.memo(() => {
+      return (
+        <div>hello Head, { Math.random() }</div>
+      )
+    })
+    
+    let element = (
+      <Welcome />
+    );
+    root.render(element);
+
+
+
+    
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <my-head>
+      <!-- <template v-slot:title>
+        <p>logo, {{ message }}, {{ count }}</p>
+      </template>
+      <template v-slot:list>
+        <ul>
+          <li>首页</li>
+          <li>视频</li>
+          <li>音乐</li>
+        </ul>
+      </template> -->
+      <template #title>
+        <p>logo, {{ message }}, {{ count }}</p>
+      </template>
+      <template #list="{ list }">
+        <ul>
+          <li v-for="item in list">{{ item }}</li>
+        </ul>
+      </template>
+    </my-head>
+  </div>
+  <script>
+    let app = Vue.createApp({
+      data(){
+        return {
+          message: 'hello'
+        }
+      }
+    })
+
+    app.component('MyHead', {
+      data(){
+        return {
+          count: 123,
+          list: ['首页', '视频', '音乐']
+        };
+      },
+      template: `
+        <header>
+          <slot name="title"></slot>
+          <hr>
+          <slot name="list" :list="list"></slot>
+        </header>
+      `,
+    });
+    
+    let vm = app.mount('#app');
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box1{ background: red;}
+    .box2{ color: white;}
+  </style>
+  <script src="../vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div :class="myClass">aaaaa</div>
+    <div :style="myStyle">bbbbb</div>
+  </div>
+  <script>
+
+    let vm = Vue.createApp({
+      data(){
+        return {
+          //myClass: 'box1 box2'
+          //myClass: ['box1', 'box2'],
+          //myClass: { box1: true, box2: true }
+          //myStyle: 'background: blue; color: yellow',
+          //myStyle: ['background: blue', 'color: yellow'],
+          myStyle: { background: 'blue', color: 'yellow' },
+        }
+      }
+    }).mount('#app');
+
+    setTimeout(()=>{
+      
+      //vm.myClass.pop();
+      //vm.myClass.box2 = false;
+
+      //vm.myStyle.push('width: 300px');
+      vm.myStyle.color = 'white';
+
+    }, 2000)
+
+  </script>
+</body>
+</html>

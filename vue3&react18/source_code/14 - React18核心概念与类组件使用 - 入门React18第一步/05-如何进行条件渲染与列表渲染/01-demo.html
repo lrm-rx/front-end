@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    /* let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app); 
+    let isShow = false;
+    let element;
+    if(isShow){
+      element = (
+        <div>
+          hello world
+        </div>
+      );
+    }
+    else{
+      element = (
+        <div>
+          hi react
+        </div>
+      );
+    }
+
+    root.render(element); */
+
+    /* let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app); 
+    let isShow = true;
+    let element = (
+      <div>
+        {
+          isShow ? 'hello world' : 'hi react'
+        } 
+      </div>
+    );
+
+    root.render(element); */
+
+
+    let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app); 
+    // JSX中不会渲染的值：false null undefined ''
+    let isShow = 0;
+    let element = (
+      <div>
+        {
+          isShow !== 0 && 'hello world'
+        } 
+      </div>
+    );
+
+    root.render(element);
+
+  </script>
+</body>
+</html>

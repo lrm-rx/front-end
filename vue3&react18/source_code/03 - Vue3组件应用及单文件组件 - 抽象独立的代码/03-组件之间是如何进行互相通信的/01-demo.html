@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.global.js"></script>
+</head>
+<body>
+  <!-- <div id="app">
+    <my-head title="hello world" :count="count"></my-head>
+  </div>
+  <script>
+    let app = Vue.createApp({
+      data(){
+        return {
+          count: 10
+        }
+      },
+      mounted(){
+        setTimeout(()=>{
+          this.count = 20;
+        }, 2000)
+      }
+    })
+
+    app.component('MyHead', {
+      props: ['title', 'count'],
+      template: `
+        <header>
+          <div>{{ title }}, {{ count }}</div>
+          <h2>logo</h2>
+          <ul>
+            <li>首页</li>
+            <li>视频</li>
+            <li>音乐</li>
+          </ul>
+        </header>
+      `
+    });
+    
+    let vm = app.mount('#app');
+  
+  </script> -->
+
+
+  <!-- <div id="app">
+    <my-head @custom-click="handleClick"></my-head>
+  </div>
+  <script>
+    let app = Vue.createApp({
+      data(){
+        return {
+        }
+      },
+      methods: {
+        handleClick(data){
+          console.log(data);
+        }
+      }
+    })
+
+    app.component('MyHead', {
+      emits: ['custom-click'], 
+      template: `
+        <header>
+          <h2>logo</h2>
+          <ul>
+            <li>首页</li>
+            <li>视频</li>
+            <li>音乐</li>
+          </ul>
+        </header>
+      `,
+      mounted(){
+        setTimeout(()=>{
+          this.$emit('custom-click', 'MyHead Data')
+        }, 2000)
+      }
+    });
+    
+    let vm = app.mount('#app');
+  
+  </script> -->
+
+  <div id="app">
+    <my-head title="hello world" :count="count"></my-head>
+  </div>
+  <script>
+    let app = Vue.createApp({
+      data(){
+        return {
+          count: 10
+        }
+      }
+    })
+
+    app.component('MyHead', {
+      props: {
+        'count': {
+          type: Number
+        }
+      },
+      template: `
+        <header>
+          <div>{{ count }}</div>
+          <h2>logo</h2>
+          <ul>
+            <li>首页</li>
+            <li>视频</li>
+            <li>音乐</li>
+          </ul>
+        </header>
+      `
+    });
+    
+    let vm = app.mount('#app');
+  
+  </script>
+</body>
+</html>

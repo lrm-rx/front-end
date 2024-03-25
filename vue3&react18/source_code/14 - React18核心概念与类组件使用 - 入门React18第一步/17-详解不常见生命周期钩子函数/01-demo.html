@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app); 
+    
+    class Welcome extends React.Component {
+      state = {
+        isAdd: false,
+        lastNow: 0
+      }
+      static getDerivedStateFromProps = (props, state) => {
+        return {
+          isAdd: props.currentNow > state.lastNow,
+          lastNow: props.currentNow
+        }
+      }
+      render(){
+        return (
+          <div>
+            { this.state.isAdd ? '累加' : '累减' }, { this.state.lastNow }
+          </div>
+        );
+      }
+    }
+
+    let now = 0;
+    let dir = 1;
+
+    setInterval(()=>{
+      if(now === 0){
+        dir = 1;
+      }
+      else if(now === 5){
+        dir = -1;
+      }
+      now += dir;
+      let element = (
+        <Welcome currentNow={now} />
+      );
+      root.render(element);
+    }, 1000)
+
+
+
+  </script>
+</body>
+</html>

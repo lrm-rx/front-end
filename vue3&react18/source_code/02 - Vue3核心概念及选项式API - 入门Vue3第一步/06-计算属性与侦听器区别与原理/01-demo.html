@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{ message.split(' ').reverse().join(' ') }}<br>
+    {{ reverseMessageMethod() }}<br>
+    {{ reverseMessageMethod() }}<br>
+    {{ reverseMessage }}<br>
+    {{ reverseMessage }}<br>
+  </div>
+  <script>
+
+    let vm = Vue.createApp({
+      data(){
+        return {
+          message: 'hello world'
+        }
+      },
+      methods: {
+        reverseMessageMethod(){
+          console.log(1);
+          return this.message.split(' ').reverse().join(' ');
+        }
+      },
+      computed: {
+        /* reverseMessage(){
+          console.log(2);
+          return this.message.split(' ').reverse().join(' ');
+        } */
+        reverseMessage: {
+          set(value){
+            this.message = value;
+          },
+          get(){
+            return this.message.split(' ').reverse().join(' ');
+          }
+        }
+      }
+    }).mount('#app');
+
+    setTimeout(()=>{
+      vm.reverseMessage = 'hi vue';
+      //vm.message = 'hi vue';
+    }, 2000)
+
+  </script>
+</body>
+</html>

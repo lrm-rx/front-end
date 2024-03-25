@@ -1,0 +1,12 @@
+$num: 100px;
+
+.box{
+  width: $num;
+  height: $num;
+  background: red;
+}
+.box2{
+  width: $num;
+  height: $num;
+  background: blue;
+}

@@ -1,0 +1,8 @@
+.Welcome .box{
+  color: yellow;
+}
+.Welcome .box2{
+  width: 100px;
+  height: 100px;
+  background: blue;
+}

@@ -1,0 +1,79 @@
+{
+  "id": "2407664",
+  "name": "lagou",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1166722",
+      "name": "放大镜",
+      "font_class": "fangdajing",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "1297609",
+      "name": "35_向下箭头",
+      "font_class": "35_xiangxiajiantou",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "14787733",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e844",
+      "unicode_decimal": 59460
+    },
+    {
+      "icon_id": "17482914",
+      "name": "左箭头",
+      "font_class": "zuojiantou",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "859457",
+      "name": "首页",
+      "font_class": "home",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "1356155",
+      "name": "我的",
+      "font_class": "wode",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "5158410",
+      "name": " 搜索",
+      "font_class": "sousuo-",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "1188552",
+      "name": "编辑",
+      "font_class": "bj",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "1518328",
+      "name": "添加",
+      "font_class": "tianjia",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
+      "icon_id": "7964510",
+      "name": "退出",
+      "font_class": "tuichu",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    }
+  ]
+}

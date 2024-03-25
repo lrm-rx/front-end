@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    let app = document.querySelector('#app');
+    let root = ReactDOM.createRoot(app);
+    let { useState } = React;
+    let { flushSync } = ReactDOM;
+    
+    let Welcome = (props) => {
+      const initCount = () => {
+        console.log('initCount');
+        return 2*2*2;
+      }
+      // 初始需要大量计算的情况，可以写一个回调函数，这样可以惰性加载函数，只让函数调用一次
+      const [count, setCount] = useState(()=>{
+        return initCount();
+      });
+      const [msg, setMsg] = useState('hello');
+      
+      // 默认不具备自动合并的能力
+      // const [info, setInfo] = useState({
+      //   username: 'xiaoming',
+      //   age: 20
+      // })
+      // setInfo({
+      //   ...info,
+      //   username: 'xiaoqiang'
+      // })
+
+      const handleClick = () => {
+        // flushSync(()=>{
+        //   setCount(count + 1)
+        // })
+        // flushSync(()=>{
+        //   setMsg('hi')
+        // })
+
+        setCount(count + 1)
+        // setCount(count + 1)
+        // setCount(count + 1)
+
+        // setCount((count)=> count+1)
+        // setCount((count)=> count+1)
+        // setCount((count)=> count+1)
+
+        // 既然要进行自动批处理操作，所以函数是异步的
+        // useState()：对应响应式数据的修改函数是没有第二个参数的，所以要监听数据改变后的时机，在函数组件中是通过 useEffect() 来实现的
+        // setCount(count + 1, ()=>{   // ✖
+        //   console.log(count)
+        // })
+
+
+
+      }
+      console.log(123);
+      return (
+        <div>
+          <button onClick={handleClick}>点击</button>
+          <div>hello world, { count }, { msg }</div>
+        </div>
+      );
+    }
+    
+    let element = (
+      <Welcome />
+    );
+    root.render(element);
+
+
+    
+
+  </script>
+</body>
+</html>

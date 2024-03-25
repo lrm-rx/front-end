@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app); 
+    
+    // let element = (
+    //   <div>hello world</div>
+    // );
+
+    // 函数组件 和 类组件
+
+    // function Welcome(props){
+    //   return (
+    //     <div>hello world, {props.msg}</div>
+    //   );  
+    // }
+
+    // class Welcome extends React.Component {
+    //   render(){
+    //     return (
+    //       <div>hello world, {this.props.msg}</div>
+    //     );
+    //   }
+    // }
+
+    //子组件
+    class Head extends React.Component {
+      render(){
+        this.props.getData('子组件的问候~~~')
+        return (
+          <div>Head Component, {this.props.msg}</div>
+        );
+      }
+    }
+    //父组件
+    class Welcome extends React.Component {
+      getData = (data) => {
+        console.log(data)
+      }
+      render(){
+        return (
+          <div>
+            hello world, {this.props.msg}
+            <br />
+            <Head msg={this.props.msg} getData={this.getData} />
+          </div>
+        );
+      }
+    }
+
+    let element = (
+      <Welcome msg="hi react" />
+    );
+
+
+    root.render(element);
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    /* let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app); 
+    
+    class Welcome extends React.Component {
+      myRef = React.createRef()
+      handleClick = () => {   
+        //console.log(this.myRef.current);  // 原生DOM 
+        this.myRef.current.focus();
+      }
+      render(){
+        return (
+          <div>
+            <button onClick={this.handleClick}>点击</button>
+            <input type="text" ref={this.myRef} />
+          </div>
+        );
+      }
+    }
+    let element = (
+      <Welcome />
+    );
+
+    root.render(element); */
+
+
+    let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app); 
+    
+    class Welcome extends React.Component {
+      callbackRef = (element) => {
+       // console.log(element);
+        //this.myRef = element;
+        element.focus();
+      }
+      handleClick = () => {   
+        this.myRef.focus();
+      }
+      render(){
+        return (
+          <div>
+            <button onClick={this.handleClick}>点击</button>
+            <input type="text" ref={this.callbackRef} />
+          </div>
+        );
+      }
+    }
+    let element = (
+      <Welcome />
+    );
+
+    root.render(element);
+    
+  </script>
+</body>
+</html>

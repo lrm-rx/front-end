@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    /* let app = document.querySelector('#app');
+    let root = ReactDOM.createRoot(app);
+    let { useState, useEffect } = React;
+    
+    let Welcome = (props) => {
+      const [count, setCount] = useState(0);
+
+      //异步函数，在浏览器渲染DOM后触发的
+      useEffect(()=>{
+        console.log('didMount or didUpdate');
+        return ()=>{  // 这里回调函数可以用来清理副作用
+          console.log('beforeUpdate or willUnmount');
+        }
+      })
+
+      const handleClick = () => {
+        //setCount(count + 1);
+        root.unmount();
+      }
+      return (
+        <div>
+          <button onClick={handleClick}>点击</button>
+          <div>hello world, { count }</div>
+        </div>
+      );
+    }
+    
+    let element = (
+      <Welcome />
+    );
+    root.render(element); */
+
+
+
+    /* let app = document.querySelector('#app');
+    let root = ReactDOM.createRoot(app);
+    let { useState, useEffect } = React;
+    
+    let Welcome = (props) => {
+      const [count, setCount] = useState(0);
+      useEffect(()=>{
+        console.log(count);
+      }, [count])
+
+      const [msg, setMsg] = useState('hello');
+      useEffect(()=>{
+        console.log(msg);
+      }, [msg])
+
+      const handleClick = () => {
+        setCount(count + 1);
+      }
+      return (
+        <div>
+          <button onClick={handleClick}>点击</button>
+          <div>hello world, { count }, { msg }</div>
+        </div>
+      );
+    }
+    
+    let element = (
+      <Welcome />
+    );
+    root.render(element); */
+
+
+    let app = document.querySelector('#app');
+    let root = ReactDOM.createRoot(app);
+    let { useState, useEffect } = React;
+    
+    let Welcome = (props) => {
+      const [count, setCount] = useState(0);
+      /* useEffect(()=>{
+        console.log(count);
+      }, [])   // ✖ 当useEffect中有响应式数据，那么在依赖数组中一定要指定这个响应式数据 */
+
+      /* useEffect(()=>{
+        console.log(123);
+      }, [])   // ✔ 只有初始化的时候触发，模拟 初始的生命周期钩子 */
+
+      /* useEffect(()=>{
+        setInterval(()=>{
+          setCount(count + 1);
+        }, 1000)
+      }, [count])   // ✔ 会造成定时器的累加，所以需要清理，非常麻烦的 */
+
+      useEffect(()=>{
+        setInterval(()=>{
+          setCount((count)=> count + 1);
+        }, 1000)
+      }, [])   // ✔
+
+      const handleClick = () => {
+        setCount(count + 1);
+      }
+      return (
+        <div>
+          <button onClick={handleClick}>点击</button>
+          <div>hello world, { count }</div>
+        </div>
+      );
+    }
+    
+    let element = (
+      <Welcome />
+    );
+    root.render(element);
+
+
+    
+
+  </script>
+</body>
+</html>

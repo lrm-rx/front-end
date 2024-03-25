@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    /* let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app); 
+    
+    class Welcome extends React.Component {
+      render(){
+        return (
+          <div>
+            hello world, { this.props.children }
+          </div>
+        );
+      }
+    }
+    let element = (
+      <Welcome>
+        <h2>这是一个标题</h2>
+      </Welcome>
+    );
+
+    root.render(element); */
+
+
+    let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app); 
+    
+    class Welcome extends React.Component {
+      render(){
+        return (
+          <div>
+            { this.props.title }
+            hello world
+            { this.props.content }
+          </div>
+        );
+      }
+    }
+    let element = (
+      <Welcome title={ <h2>这是一个标题</h2> } content={ <p>这是一个段落</p> } />
+    );
+
+    root.render(element);
+
+
+  </script>
+</body>
+</html>

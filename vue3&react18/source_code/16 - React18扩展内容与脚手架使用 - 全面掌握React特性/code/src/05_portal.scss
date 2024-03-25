@@ -1,0 +1,52 @@
+.Message{
+  display: inline-block;
+  padding: 10px 16px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+  pointer-events: all;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.Message-enter{
+  opacity: 0;
+  top: 10px;
+}
+.Message-enter-active{
+  opacity: 1;
+  top: 20px;
+  transition: 1s;
+}
+.Message-enter-done{
+  opacity: 1;
+  top: 20px;
+}
+.Message-exit{
+  opacity: 1;
+  top: 20px;
+}
+.Message-exit-active{
+  opacity: 0;
+  top: 10px;
+  transition: 1s;
+}
+.Message-exit-done{
+  opacity: 0;
+  top: 10px;
+}
+.Message-appear{
+  opacity: 0;
+  top: 10px;
+}
+.Message-appear-active{
+  opacity: 1;
+  top: 20px;
+  transition: 1s;
+}
+.Message-appear-done{
+  opacity: 1;
+  top: 20px;
+}
+

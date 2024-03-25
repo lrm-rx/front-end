@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+  <script src="../prop-types.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app); 
+    
+    class Welcome extends React.PureComponent {
+      state = {
+        msg: 'hello',
+        count: 0,
+        list: ['a', 'b', 'c']
+      }
+      handleClick = () => {  
+        /* this.setState({
+          list: [...this.state.list, 'd']
+        }); */
+
+        //错误✖
+        /* this.state.list.push('d');
+        this.setState({
+          list: this.state.list
+        }) */
+
+      }
+      render(){
+        console.log('render');
+        return (
+          <div>
+            <button onClick={this.handleClick}>点击</button>
+            <ul>
+              {
+                this.state.list.map((v, i)=> <li key={i}>{v}</li>)
+              }
+            </ul>
+          </div>
+        );
+      }
+    }
+    let element = (
+      <Welcome />
+    );
+
+
+    root.render(element);
+
+
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+  <script src="../prop-types.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app); 
+    
+    
+    class Welcome extends React.Component {
+      static defaultProps = {
+        age: 0
+      }
+      static propTypes = {
+        age: PropTypes.number
+      }
+      render(){
+        // 不能对props下的属性进行修改，因为数据是单向流动的
+        //this.props.msg = 'hello world';
+
+        let { msg, username, age, isChecked } = this.props;
+        console.log( isChecked );
+        return (
+          <div>hello world, {msg}, {username}, {age}</div>
+        );
+      }
+    }
+    let info = {
+      msg: 'hi react',
+      username: 'xiaoming',
+      age: 20
+    };
+    let element = (
+      <Welcome {...info} isChecked />
+    );
+
+
+    root.render(element);
+
+
+    
+  </script>
+</body>
+</html>

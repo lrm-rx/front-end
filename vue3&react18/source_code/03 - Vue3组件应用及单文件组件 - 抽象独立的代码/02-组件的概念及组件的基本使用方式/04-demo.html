@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <my-head></my-head>
+  </div>
+  <script>
+    let MyLogo = {
+      template: `
+        <h2>logo</h2>
+      `
+    };
+    let MyHead = {
+      template: `
+        <header>
+          <div>{{ message }}</div>
+          <my-logo></my-logo>
+          <ul>
+            <li>首页</li>
+            <li>视频</li>
+            <li>音乐</li>
+          </ul>
+        </header>
+      `,
+      components: {
+        MyLogo
+      }
+    };
+    let RootApp = {
+      data(){
+        return {
+        }
+      },
+      //局部组件: 只能在当前组件中进行使用
+      components: {
+        MyHead
+      }
+    };
+    let app = Vue.createApp(RootApp)
+
+    //全局组件
+    //app.component('MyHead', MyHead);
+    //app.component('MyLogo', MyLogo);
+    
+    let vm = app.mount('#app');
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      border:1px red solid;
+    }
+  </style>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app); 
+    let myClass = 'box';
+    let handleClick = () => {
+      console.log(123);
+    }
+    let myStyle = {
+      color: 'red'
+    };
+    let element = (
+      <div>
+        { /* <p>{ 1 + 1 }</p> */ }
+        <p className={myClass}>{ 'hello' }</p>
+        <p onClick={handleClick}>{ 'hello'.repeat(3) }</p>
+        <p style={myStyle}>{ true ? 123 : 456 }</p>
+        <p>{ <span>span111</span> }</p>
+        <p><span>span222</span></p>
+      </div>
+    ); 
+
+    root.render(element);
+
+  </script>
+</body>
+</html>

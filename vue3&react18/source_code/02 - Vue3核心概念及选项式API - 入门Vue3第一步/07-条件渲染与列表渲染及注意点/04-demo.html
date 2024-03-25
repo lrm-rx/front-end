@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div v-for="item, index in oddList" :key="index">{{ item.text }}, {{ index }}, <input type="text"></div>
+  </div>
+  <script>
+
+    let vm = Vue.createApp({
+      data(){
+        return {
+          list: [
+            { id: 1, text: 'a' },
+            { id: 2, text: 'b' },
+            { id: 3, text: 'c' },
+          ]
+        }
+      },
+      computed: {
+        oddList(){
+          return this.list.filter((v)=> v.id%2 === 1);
+        }
+      }
+    }).mount('#app');
+
+  </script>
+</body>
+</html>

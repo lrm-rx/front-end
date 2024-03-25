@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app);
+    let MyContext = React.createContext();
+
+    class Welcome extends React.Component {
+      state = {
+        msg: 'welcome组件的数据'
+      }
+      render(){
+        return (
+          <div>
+            Hello Welcome
+            <MyContext.Provider value={this.state.msg}>
+              <Head />
+            </MyContext.Provider>
+          </div>
+        );
+      }
+    }
+
+    class Head extends React.Component {
+      render(){
+        return (
+          <div>
+            Hello Head
+            <Title />
+          </div>
+        );
+      }
+    }
+
+    class Title extends React.Component {
+      static contextType = MyContext
+      componentDidMount = () => {
+        console.log( this.context );
+      }
+      render(){
+        return (
+          <div>
+            Hello Title <MyContext.Consumer>{ value => value }</MyContext.Consumer>
+          </div>
+        );
+      }
+    }
+
+    let element = (
+      <Welcome />
+    );
+
+    root.render(element);
+
+
+  </script>
+</body>
+</html>

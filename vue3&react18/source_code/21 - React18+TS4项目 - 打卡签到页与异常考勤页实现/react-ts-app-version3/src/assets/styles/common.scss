@@ -1,0 +1,26 @@
+
+.ant-layout .ant-layout-header {
+  background: white;
+  padding-left: 20px;
+}
+
+.ant-menu-inline .ant-menu-item{
+  height: 50px;
+  margin: 0;
+  width: 100%;
+  border-radius: 0;
+}
+.ant-menu-item-selected{
+  background: #e6f7ff !important;
+  border-right: 3px solid #1890ff;
+}
+
+.status-wrapper{
+  margin: 20px auto;
+  width: 315px;
+  text-align: center;
+  p{
+    margin: 30px 0;
+  }
+}
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      border:1px red solid;
+    }
+  </style>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    let app = document.querySelector('#app');
+
+    let root = ReactDOM.createRoot(app); 
+
+    // let element = <h2 title="hi">hello world<span>!!!!!!</span></h2>; 
+
+    let element = (
+      <React.Fragment>
+        <h2 title="hi" className="box">
+          hello world
+          <span>!!!!!!</span>
+          <label htmlFor="elemInput">用户名：</label>
+          <input id="elemInput" type="text" tabIndex="3" data-userid="123" />
+        </h2>
+        <p>ppppppp</p>
+      </React.Fragment>
+    ); 
+
+    root.render(element);
+
+  </script>
+</body>
+</html>

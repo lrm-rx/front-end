@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+  </div>
+  <script>
+
+    /* function foo(cb){
+      //指定的时机去调用回调函数
+      cb();
+    }
+    foo(function(){
+      // 编写复杂的逻辑1
+    });
+    foo(function(){
+      // 编写复杂的逻辑2
+    }); */
+
+    let vueApp = Vue.createApp({
+      data(){
+        return {
+          message: 'hello world'
+        }
+      },
+      beforeCreate(){
+        // console.log( this.message );
+        // console.log( app.innerHTML );
+      },
+      // 响应式数据准备好后触发的生命周期
+      created(){
+        // console.log( this.message );   // ✔
+        // console.log( app.innerHTML );
+       /*  setTimeout(()=>{
+          this.message = 'hi vue';
+        }, 1000) */
+      },
+      beforeMount(){
+        // console.log( this.message );   // ✔
+        // console.log( app.innerHTML );
+      },
+      // 等DOM加载完毕后触发的生命周期
+      mounted(){
+        // console.log( this.message );   // ✔
+        // console.log( app.innerHTML );  // ✔
+
+        /* setTimeout(()=>{
+          this.message = 'hi vue';
+        }, 1000) */
+
+      },
+      beforeUpdate(){   // 在更新数据的时候会触发的生命周期
+        // console.log( this.message );
+        // console.log( app.innerHTML );
+      },
+      updated(){
+        // console.log( this.message );
+        // console.log( app.innerHTML );
+      },
+      beforeUnmount(){
+        // console.log( this.message );
+        // console.log( app.innerHTML );
+      },
+      unmounted(){
+        console.log( this.message );
+        console.log( app.innerHTML );   // ''
+      }
+    })
+    
+    
+    vueApp.mount('#app');
+
+    setTimeout(()=>{
+      //vm.message = 'hi vue';
+      vueApp.unmount();
+    }, 1000)
+
+  </script>
+</body>
+</html>

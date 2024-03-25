@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    let app = document.querySelector('#app');
+    let root = ReactDOM.createRoot(app);
+    let { useState } = React;
+
+    let Welcome = (props) => {  
+      const [ isLogin, setLogin ] = useState(true)
+      const [ isLogout, setLogout ] = useState(false)
+      const handleLogin = () => {
+        setLogin(true)
+        setLogout(false)
+      }
+      const handleLogout = () => {
+        setLogin(false)
+        setLogout(true)
+      }
+      return (
+        <div>
+          { isLogin ? <button onClick={handleLogout}>退出</button> : <button onClick={handleLogin}>登录</button> }
+        </div>
+      );
+    }
+    
+    let element = (
+      <Welcome />
+    );
+    root.render(element);
+
+
+
+    
+
+  </script>
+</body>
+</html>

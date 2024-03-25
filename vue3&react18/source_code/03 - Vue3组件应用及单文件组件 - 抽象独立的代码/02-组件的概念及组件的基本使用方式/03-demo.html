@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- <my-head></my-head> -->
+    <h2>我是根组件的结构1</h2>
+  </div>
+  <script>
+    let RootApp = {
+      data(){
+        return {
+        }
+      },
+      // template: `
+      //   <h2>我是根组件的结构2</h2>
+      // `
+    };
+    let MyHead = {
+      template: `
+        <header>
+          <div>{{ message }}</div>
+          <h2>logo</h2>
+          <ul>
+            <li>首页</li>
+            <li>视频</li>
+            <li>音乐</li>
+          </ul>
+        </header>
+      `
+    };
+    let app = Vue.createApp(RootApp)
+    app.component('MyHead', MyHead);
+    
+    let vm = app.mount('#app');
+  </script>
+</body>
+</html>

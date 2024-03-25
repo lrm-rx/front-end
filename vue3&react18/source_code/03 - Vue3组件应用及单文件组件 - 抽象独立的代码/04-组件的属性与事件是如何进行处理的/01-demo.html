@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      background: skyblue;
+    }
+  </style>
+  <script src="../vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <my-head title="hello world" class="box" @click="handleClick"></my-head>
+  </div>
+  <script>
+    let app = Vue.createApp({
+      data(){
+        return {
+        }
+      },
+      methods: {
+        handleClick(ev){
+          console.log(ev.currentTarget);
+        }
+      }
+    })
+
+    app.component('MyHead', {
+     // props: ['class'],
+      template: `
+        <header>
+          <h2 v-bind:title="$attrs.title">logo</h2>
+          <ul v-bind:class="$attrs.class">
+            <li>首页</li>
+            <li>视频</li>
+            <li>音乐</li>
+          </ul>
+        </header>
+      `,
+      mounted(){
+        console.log( this.$attrs );   // 也可以完成父子通信操作
+      },
+      inheritAttrs: false   // 阻止默认的属性传递到容器的操作
+    });
+    
+    let vm = app.mount('#app');
+  
+  </script>
+</body>
+</html>

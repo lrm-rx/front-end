@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../react.development.js"></script>
+  <script src="../react-dom.development.js"></script>
+  <script src="../babel.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+
+    let app = document.querySelector('#app');
+    let root = ReactDOM.createRoot(app);
+    let { useContext } = React;
+    let MyContext = React.createContext('默认值');
+    
+    let Welcome = (props) => {  
+      return (
+        <div>
+          hello Welcome
+          <MyContext.Provider value="welcome的问候~~~">
+            <Head />
+          </MyContext.Provider>
+        </div>
+      );
+    }
+    let Head = () => {
+      return (
+        <div>
+          hello Head
+          <Title />
+        </div>
+      );
+    }
+    let Title = () => {
+      let value = useContext(MyContext);
+      return (
+        <div>
+          hello Title, { value }
+        </div>
+      );
+    }
+    
+    let element = (
+      <Welcome />
+    );
+    root.render(element);
+
+
+
+    
+
+  </script>
+</body>
+</html>

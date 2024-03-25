@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active-gender{
+      background: red;
+    }
+  </style>
+  <script src="../vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="message">
+    <button :class="activeGender('全部')" @click="handleGender('全部')">全部</button>
+    <button :class="activeGender('男')" @click="handleGender('男')">男</button>
+    <button :class="activeGender('女')" @click="handleGender('女')">女</button>
+    <ul>
+      <li v-for="item in filterList" :key="item.id">{{ item.name }}, {{ item.gender }}, {{ item.age }}</li>
+    </ul>
+  </div>
+  <script>
+
+    let vm = Vue.createApp({
+      data() {
+        return {
+          list: [],
+          message: '',
+          gender: '全部'
+        }
+      },
+      created(){
+        fetch('./02-data.json').then((res)=> res.json()).then((res)=>{
+          this.list = res;
+        })
+      },
+      computed: {
+        filterList(){
+          return this.list
+                  .filter((v)=> v.name.includes(this.message))
+                  .filter((v)=> v.gender === this.gender || '全部' === this.gender);
+        }
+      },
+      methods: {
+        activeGender(gender){
+          return { 'active-gender': this.gender === gender };
+        },
+        handleGender(gender){
+          this.gender = gender;
+        }
+      }
+    }).mount('#app');
+
+  </script>
+</body>
+
+</html>

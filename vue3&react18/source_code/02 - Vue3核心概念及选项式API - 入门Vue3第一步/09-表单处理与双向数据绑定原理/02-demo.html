@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- <input type="checkbox" v-model="fruits" value="苹果">苹果<br>
+    <input type="checkbox" v-model="fruits" value="西瓜">西瓜<br>
+    <input type="checkbox" v-model="fruits" value="哈密瓜">哈密瓜<br>
+    {{ fruits }} -->
+    <!-- <input type="radio" v-model="gender" value="女">女<br>
+    <input type="radio" v-model="gender" value="男">男<br>
+    {{ gender }} -->
+    <select v-model="city">
+      <option value="北京">北京</option>
+      <option value="上海">上海</option>
+      <option value="杭州">杭州</option>
+    </select>
+    {{ city }}
+  </div>
+  <script>
+
+    let vm = Vue.createApp({
+      data(){
+        return {
+          fruits: ['西瓜', '哈密瓜'],
+          gender: '男',
+          city: '杭州'
+        }
+      }
+    }).mount('#app');
+
+    setTimeout(()=>{
+      vm.message = 'hi vue'
+    }, 2000)
+
+  </script>
+</body>
+</html>
