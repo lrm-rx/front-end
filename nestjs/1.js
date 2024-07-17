@@ -19,7 +19,7 @@ function mergeObjects(obj1, obj2) {
 
   // 遍历第二个对象，添加第一个对象中没有的属性
   for (const key in obj2) {
-    if (Object.hasOwnProperty.call(obj2, key) && !mergedObj.hasOwnProperty(key)) {
+    if (Object.hasOwnProperty.call(obj2, key) && !Object.hasOwnProperty.call(mergedObj, key)) {
       mergedObj[key] = obj2[key];
     }
   }
