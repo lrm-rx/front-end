@@ -1,23 +1,25 @@
+// 合并两个对象,相同属性合并取值规则是 除了null和undefined之外的类型都视为有值, 包括空数组, 空字符串, 0等. 有属性值的相同属性取取有属性值的属性. 
+// 应用场景: 后端返回的字段值存在null或undefined, 前端在赋值时不符合组件绑定值类型, 即为了适配前端组件绑定值
 function mergeObjects(obj1, obj2) {
   const mergedObj = {};
 
-  // 遍历第一个对象
   for (const key in obj1) {
-    if (obj1.hasOwnProperty(key)) {
+    if (Object.hasOwnProperty.call(obj1, key)) {
       // 判断属性值是否为 null 或 undefined
       if (obj1[key] !== null && obj1[key] !== undefined) {
         mergedObj[key] = obj1[key];
       } else if (obj2[key] !== null && obj2[key] !== undefined) {
         mergedObj[key] = obj2[key];
       } else {
-        mergedObj[key] = obj1[key]; // 如果两个对象都为 null 或 undefined，取第一个对象的属性值
+        // 如果两个对象都为 null 或 undefined，取第一个对象的属性值
+        mergedObj[key] = obj1[key];
       }
     }
   }
 
   // 遍历第二个对象，添加第一个对象中没有的属性
   for (const key in obj2) {
-    if (obj2.hasOwnProperty(key) && !mergedObj.hasOwnProperty(key)) {
+    if (Object.hasOwnProperty.call(obj2, key) && !mergedObj.hasOwnProperty(key)) {
       mergedObj[key] = obj2[key];
     }
   }
