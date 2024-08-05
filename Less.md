@@ -82,6 +82,79 @@
 
 ### 7. 混合的可变参数
 
+```less
+.animate(@name, @time, @mode, @delay) {
+    // transition: @name @time @mode @delay;
+    transition: @arguments;
+}
+// or
+.animate(...) {
+    // transition: @name @time @mode @delay;
+    transition: @arguments;
+}
+// or
+.animate(@name, ...) {
+    // transition: @name @time @mode @delay;
+    transition: @arguments;
+}
+// or
+.animate(@name, @time, ...) {
+    // transition: @name @time @mode @delay;
+    transition: @arguments;
+}
+```
+
+### 8. 混合中的匹配模式
+
+> @_: 表示通用的匹配模式, 用于抽取公共属性, 最优先执行
+
+```less
+.xxx(Down, @width, @color) {}
+.xxx(up, @width, @color) {}
+```
+
+### 9. 导入其他less文件
+
+> @import "xxx.less",  .less可省略
+
+### 11. 内置函数
+
+> 由于less的底层是用javaScript实现的, 所以javascript中常用的一些函数在less中都支持
+
+- 混杂方法
+
+- 数学
+
+  ceil(2.1); // => 3  向上取整
+
+  floor(2.1); // => 2 向下取整
+
+  percentage(.3) ;  // => 30%  转百分比
+
+  round(1.67, 1) ;  // => 1.7  四舍五入保留一位小数
+
+  sqrt(25cm);  // => 5cm  取平方根
+
+  abs(-5cm);  // => 5cm   取绝对值
+
+  pi();  // => 3.1415
+
+  max(3px, 42px, 1px, 16px);  // => 42px
+
+  min((3px, 42px, 1px, 16px);  // => 1px
+
+- 字符串
+
+- 判断类型
+
+- 颜色操作
+
+- 颜色混合
+
+- 看官网
+
+
+
 
 
 
